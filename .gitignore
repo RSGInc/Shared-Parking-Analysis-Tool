@@ -1,0 +1,14 @@
+*.pyc
+*.egg-info/
+__pycache__/
+
+tests/test_logs/
+tests/winooski_example/output/
+tests/winooski_restrictions/output/
+test.py
+WinAveTests
+WinCityTests
+
+# Mac
+.DS_Store
+.Rproj.user
