@@ -8,6 +8,7 @@ tests/winooski_restrictions/output/
 test.py
 WinAveTests
 WinCityTests
+Output/base/baseoutput
 
 # Mac
 .DS_Store

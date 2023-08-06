@@ -1,10 +1,13 @@
 #Author: RSG.
 #Date: July 2021
-#version 1.0
+#version 1.1
 #This script extracts data from the analysis completed in the python scripting Shared Parking analysis
 
 
 #Step 1: Load Packages
+# ##################### #
+##### LOAD PACKAGES #####
+# ##################### #
 
 rm(list = ls())
 
@@ -15,62 +18,59 @@ library(sp)
 library(rgdal)
 
 #Step 2: Define the Project. The project name is used to manage the source of files.
-#this is used to chose the file locations below
-#project = "winooski_ave", "winooski_city"
-#project = "winooski_city"
-project = "winooski_ave"
+# ###################### #
+##### DEFINE PROJECT and Folder Locations #####
+# ###################### #
 
-#Step 3: Inputs to select the analysis data
-# Scenario output folder Name (point this to the output folder from the python cnfg.yaml script)
-scen_name = "output"
-
-# Demand and Adjustments File Used in Scenario. This is the Shared Parking Excel data file
-factors_used = "Parking Demand and Adjustments3"
-
-# Generator (Demand) Shapefile used (in github parent folder  /data )
-# Referred to as the demand_shapefile in the CNFG.yaml
-#demand_shp = "Demand_small2"
-#demand_shp = "WinCity_Calibratedbased"
-#demand_shp = "WinCity_NearTerm_Sc1"
-#demand_shp = "Winooski_Generators"
-demand_shp = "Winooski_Generators"
-
-# Parking (Supply) Shapefile Used (in github parent folder  /data )
-# Referred to as the supply_shapefile in the CNFG.yaml
-#supply_shp = "Supply_Small2"
-#supply_shp = "WinCity_BaseCalibration_Supply"
-#supply_shp = "WinCity_NearTerm_Sc1_parking"
-supply_shp = "Winooski_Parking"
-#supply_shp = "WinCity_Calibratedbased"
-
-
+#project = "winooski_ave", "winooski_city", toggle these for project type
+project = "winooski_city"
 
 ##### Data directories for each project
-### model_dir = parent directory for python script and where the CONFG.yaml is located.
-### dir = directory for desired outputs or any non-python related inputs (likely not needed anymore)
-
+### model_dir = parent directory for python script, where output files are stored
+### dir = directory for desired outputs or any non-python related inputs (likely not 
+### needed anymore), substitute own directory
 ##### WIN CITY #####
 if(project == "winooski_city"){
-
-  #dir = "C:/Users/aaron.lee/OneDrive - Resource Systems Group, Inc/20180-WinCityPMP/tasks/ParkModel/New Model Results/Calibration Comparison and Processing"
-  model_dir = "C:/GitHub/shared_parking/WinCityTests/tests/base"
-
+  
+  #dir = "C:\\Shared_Parking\\Calibration Comparison and Processing"
+  model_dir = "C:\\GitHub\\Shared-Parking-Analysis-Tool\\Output\\base"
+  
 }
 ##### WIN AVE #####
 if(project == "winooski_ave"){
   
-  #dir = "C:/GitHub/shared_parking/WinAveTests/DemandOut"
-  model_dir = "C:/Github/shared_parking/WinAveTests/future_3"
+  dir = "C:/GitHub/shared_parking/WinAveTests/DemandOut"
+  model_dir = "C:/WINCity task/shared_parking/WinAveTests/future_3"
   
 }
-#may note need this step
-## input and output directory names for dir (not python model inputs/outputs
-##inputs = paste(dir,"Inputs",sep="/")
-#outputs = paste(dir,"baseoutput",sep="/")
+
+# Scenario Name (point this to the output folder from the python script)
+# only put the name of the folder where the python outputs are stored.
+scen_name = "baseoutput"
+
+## input and output directory names for the Excel outputs from the python files
+#inputs = paste(dir,"Inputs",sep="/")
+outputs = paste(model_dir,scen_name,sep="/")
+
+# Demand and Adjustments File Used in Scenario. This is the Shared Parking Excel data file
+factors_used = "Parking Demand and Adjustments"
+
+# Name of Parking (Supply) Shapefile Used in the analysis
+#supply_shp = "Supply_Small2"
+supply_shp = "WinCity_BaseCalibration_Supply"
+#supply_shp = "WinCity_NearTerm_Sc1_parking"
+#supply_shp = "Winooski_Parking"
+
+
+# Name of Generator (Demand) Shapefile used in the analysis
+#demand_shp = "Demand_small2"
+demand_shp = "WinCity_Calibratedbased"
+#demand_shp = "WinCity_NearTerm_Sc1"
+#demand_shp = "Winooski_Generators"
 
 
 
-#Step 4: Reading the Data
+#Step 3: Reading the Data for Analysis
 # ################# #
 ##### READ DATA #####
 # ################# #
@@ -81,11 +81,13 @@ demand = read_csv(paste(model_dir,scen_name,"demand.csv",sep="\\"))
 factors = read_csv(paste(model_dir,scen_name,"factors.csv",sep="\\"))
 
 ### Parking and categories and generator list
-# reads shapefiles from the python data directory. these are the inputs that were used for the model run. The file should find the above referenced directories for data.
+# reads shapefiles from the python data directory. 
+# these are the inputs that were used for the model run. 
+# The file should find the above referenced directories for data.
 source("Source/read_shapefiles.R")
 
 
-#Step 5: Analysis of the Parking Data
+#Step 4: Analysis of the Parking Data
 # #################################### #
 ##### ANALYSIS and OUTPUT CREATION #####
 # #################################### # 
@@ -96,13 +98,11 @@ the_month = "Sep"
 the_day = "Weekday"
 the_hour = 14
 
-
 ### checks capacity vs. demand at high level
 source("Source/constraint check.R")
 
 ### prints summary
 constraint_check_summary
-
 
 ### more detailed check of demand and capacity. needed for plot below and demand/capacity outputs
 source("Source/demand check.R")
@@ -112,10 +112,17 @@ ggplot(data = compare2 %>% filter(Day==the_day),aes(Hour,demand,color=factor(Typ
   geom_line() +
   ggtitle(paste0(the_month," - ",the_day))
 
-#remove this line
-### Counts analysis: creates Weekday and Weekday count compare outputs
-#source("Source/counts_analysis.R")
 
+### Counts analysis: creates Weekday and Weekend count compare outputs
+#if(project == "winooski_city"){
+#  source(paste(dir,"Source/win_city_counts.R", sep="/"))
+#}
+
+#if(project == "winooski_ave"){
+#  source(paste(dir,"Source/win_ave_counts.R"))
+#}
+
+#source("Source/counts_analysis.R")
 
 ### Capacity vs. Demand for desired hour: Creates Capacity vs. Demand output
 # d2 is created in demand check and is total demand for hour/day/month combo
@@ -129,7 +136,8 @@ cap_vs_demand = d2 %>%
 
 
 #### ON STREET SHARE for desired output: Creates on-street share output
-## select the Land Use code of interest. Use the Land Use codes in the Parking Demand and Adjustments Excel file.
+## select the Land Use code of interest. 
+## Use the Land Use codes in the Parking Demand and Adjustments Excel file.
 on_street = demand %>%
   left_join(park_info) %>%
   mutate(LU_Type = ifelse(LUC %in% c(50,51),"Residential_Demand","Commercial_Demand")) %>%
@@ -141,12 +149,13 @@ on_street = demand %>%
   pivot_wider(names_from=LU_Type,values_from=c(On_Street,total,On_street_share))
 
 
-#Step 6: Writing to Excel for analysis and visualization
+#Step 5: Writing to Excel for analysis and visualization
 # ##################### #
 ##### WRITE TO XLSX #####
 # ##################### #
 
-# will write an xlsx file with all check outputs to project outputs folder with name including scenario, day and hour
+# will write an xlsx file with all check outputs to project outputs folder with 
+# name including scenario, day and hour
 
 output = list(timeseries= results
               ,parking_formatted = parking
@@ -157,8 +166,14 @@ output = list(timeseries= results
               ,Capacity_by_lot = cap_vs_demand
               ,On_Street_Share = on_street)
 
-#write.xlsx(output,paste0(output,"\\",scen_name,"_checks_",the_day,the_hour,".xlsx"),overwrite=TRUE)
-write.xlsx(output, file = paste0(output,"\\",scen_name,"_checks_",the_day,the_hour,".xlsx"),overwrite=TRUE)
+write.xlsx(output,paste0(outputs,"\\",scen_name,"_checks_",the_day,the_hour,".xlsx"),overwrite=TRUE)
 
+
+# Step 6: Updating the visualization file with new parking and timeseries info
+# Note: the Visualization Excel file will be overwritten.
+### Adjust these model folder/names as necessary to create a path to the model and output
+model_folder="WinCityTests"
+output_folder <- "/../Output/base/baseoutput/"
+source("Source/save_visualization.R")
 
 # write.csv(parking,paste0(outputs,"/parking.csv"),row.names=FALSE)

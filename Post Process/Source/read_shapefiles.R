@@ -1,3 +1,7 @@
+
+
+
+
 ### read parking shapefile - takes a long time, so saved as rds. redo if shapefile changes
 parking_shp = readOGR(dsn = paste(model_dir,"data",sep="/"),layer=supply_shp,stringsAsFactors = FALSE)
 parking = parking_shp@data %>%

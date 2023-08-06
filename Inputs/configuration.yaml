@@ -1,0 +1,99 @@
+#define folder structure for inputs and outputs
+data_dir: data
+output_dir: baseoutput
+factors_file: 'Parking Demand and Adjustments.xlsx'
+monthly_sheetname: Monthly   #Parking Demand and Adjustment.xlsx worksheet with monthly data
+daily_sheetname: LandUse  #Parking Demand and Adjustment.xlsx worksheet with daily data
+hourly_sheetname: TOD  #Parking Demand and Adjustment.xlsx worksheet with time of day data
+
+landuse_code_col: LUC
+user_col: User
+month_col: Month
+day_col: Day
+hour_col: Hour
+typical_str: Typical
+fill_missing_factors: 1.0  # value, or 'False' to drop
+
+months:
+   - Jan
+   - Feb
+   - Mar
+   - Apr
+   - May
+   - Jun
+   - Jul
+   - Aug
+   - Sep
+   - Oct
+   - Nov
+   - Dec
+   - Late Dec
+
+days:
+  - Weekday
+  - Weekend
+
+hours:
+  - 0
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+
+demand_shapefile: WinCity_Calibratedbased.shp
+supply_shapefile: WinCity_BaseCalibration_Supply.shp
+crs: 4326  # spatial coordinate reference system
+projected_crs: 5646  # projected coordinate reference system
+
+max_walk_dist: 600  # same units as projected crs
+
+# demand shapefile attributes
+gen_size_col: SIZE
+
+# supply shapefile attributes
+lot_capacity_col: SPACE_TOT
+restrict_col: RESTRICT
+gen_id_col: GEN_UID
+lot_gen_id_col: LOT_GEN_ID
+lot_id_col: LOT_UID
+lot_luc_col: LUC
+restricted_lot_landuse_codes:
+  - 50
+  - 51
+
+# Custom lot restriction table (optional)
+lot_restrict_file: restrict_list.csv
+
+# Hourly cost for metered lots
+metered_cost: 1.0  # TODO: not implemented yet (hardcoded)
+
+# Utility factors
+# (note from Blake: I made these up. feel free to change)
+distance_factor: 1.0
+capacity_factor: 1.0
+scarcity_factor: 1.0
+private_lot_factor: 2.5
+cost_factor: 1.0
+
+redistribute_overflow: False
+
+# Output files
+factors_filename: factors.csv
+gen_lot_filename: gen_lots.csv
+demand_filename: demand.csv
+preference_filename: preference.csv
+timeseries_filename: timeseries.csv
