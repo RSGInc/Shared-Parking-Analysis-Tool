@@ -1,6 +1,5 @@
-#define folder structure for inputs and outputs
 data_dir: data
-output_dir: baseoutput
+output_dir: output
 factors_file: 'Parking Demand and Adjustments.xlsx'
 monthly_sheetname: Monthly   #Parking Demand and Adjustment.xlsx worksheet with monthly data
 daily_sheetname: LandUse  #Parking Demand and Adjustment.xlsx worksheet with daily data
