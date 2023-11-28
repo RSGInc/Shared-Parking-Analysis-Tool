@@ -3,7 +3,7 @@
 
 
 ### read parking shapefile - takes a long time, so saved as rds. redo if shapefile changes
-parking_shp = readOGR(dsn = paste(model_dir,"data",sep="/"),layer=supply_shp,stringsAsFactors = FALSE)
+parking_shp = readOGR(dsn = paste(model_dir,"Inputs/data",sep="/"),layer=supply_shp,stringsAsFactors = FALSE)
 parking = parking_shp@data %>%
   mutate(LOT_UID = as.numeric(LOT_UID)
          ,SPACE_TOT = as.numeric(SPACE_TOT)
@@ -13,7 +13,7 @@ parking = parking_shp@data %>%
 rm(parking_shp)
 
 ### read generator shapefile
-generator_shp = readOGR(dsn = paste(model_dir,"data",sep="/"),layer=demand_shp,stringsAsFactors = FALSE)
+generator_shp = readOGR(dsn = paste(model_dir,"Inputs/data",sep="/"),layer=demand_shp,stringsAsFactors = FALSE)
 generators = generator_shp@data %>%
   mutate(GEN_UID = as.numeric(GEN_UID))
 

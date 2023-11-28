@@ -1,8 +1,6 @@
 ## count analysis
 
 
-
-
 ### ALL ###
 
 all_counts = database %>%

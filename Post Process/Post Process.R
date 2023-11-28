@@ -1,7 +1,8 @@
 #Author: RSG.
-#Date: July 2021
-#version 1.1
+#Date: July 2023
+#version 1.2
 #This script extracts data from the analysis completed in the python scripting Shared Parking analysis
+# Several steps and folder locations are needed to complete this script. 
 
 
 #Step 1: Load Packages
@@ -16,13 +17,15 @@ library(readxl)
 library(openxlsx)
 library(sp)
 library(rgdal)
+library(sf)
+library(terra)
 
 #Step 2: Define the Project. The project name is used to manage the source of files.
 # ###################### #
 ##### DEFINE PROJECT and Folder Locations #####
 # ###################### #
 
-#project = "winooski_ave", "winooski_city", toggle these for project type
+#project = "winooski_ave", "winooski_city", or other folders toggle these for project type
 project = "winooski_city"
 
 ##### Data directories for each project
@@ -33,7 +36,7 @@ project = "winooski_city"
 if(project == "winooski_city"){
   
   #dir = "C:\\Shared_Parking\\Calibration Comparison and Processing"
-  model_dir = "C:\\GitHub\\Shared-Parking-Analysis-Tool\\Output\\base"
+  model_dir = "C:/GitHub/Shared-Parking-Analysis-Tool/"
   
 }
 ##### WIN AVE #####
@@ -46,7 +49,7 @@ if(project == "winooski_ave"){
 
 # Scenario Name (point this to the output folder from the python script)
 # only put the name of the folder where the python outputs are stored.
-scen_name = "baseoutput"
+scen_name = "Output/base/baseoutput"
 
 ## input and output directory names for the Excel outputs from the python files
 #inputs = paste(dir,"Inputs",sep="/")
@@ -84,7 +87,7 @@ factors = read_csv(paste(model_dir,scen_name,"factors.csv",sep="\\"))
 # reads shapefiles from the python data directory. 
 # these are the inputs that were used for the model run. 
 # The file should find the above referenced directories for data.
-source("Source/read_shapefiles.R")
+source("Post Process/Source/read_shapefiles.R")
 
 
 #Step 4: Analysis of the Parking Data
@@ -99,19 +102,22 @@ the_day = "Weekday"
 the_hour = 14
 
 ### checks capacity vs. demand at high level
-source("Source/constraint check.R")
+source("Post Process/Source/constraint check.R")
 
 ### prints summary
 constraint_check_summary
 
 ### more detailed check of demand and capacity. needed for plot below and demand/capacity outputs
-source("Source/demand check.R")
+source("Post Process/Source/demand check.R")
 
 ## plots demand vs. capacity
 ggplot(data = compare2 %>% filter(Day==the_day),aes(Hour,demand,color=factor(Type))) +
   geom_line() +
   ggtitle(paste0(the_month," - ",the_day))
 
+########################################
+# Count Analysis - unused at this time. 
+########################################
 
 ### Counts analysis: creates Weekday and Weekend count compare outputs
 #if(project == "winooski_city"){
@@ -122,7 +128,8 @@ ggplot(data = compare2 %>% filter(Day==the_day),aes(Hour,demand,color=factor(Typ
 #  source(paste(dir,"Source/win_ave_counts.R"))
 #}
 
-#source("Source/counts_analysis.R")
+#source("Post Process/Source/counts_analysis.R")
+
 
 ### Capacity vs. Demand for desired hour: Creates Capacity vs. Demand output
 # d2 is created in demand check and is total demand for hour/day/month combo
@@ -149,11 +156,10 @@ on_street = demand %>%
   pivot_wider(names_from=LU_Type,values_from=c(On_Street,total,On_street_share))
 
 
-#Step 5: Writing to Excel for analysis and visualization
-# ##################### #
-##### WRITE TO XLSX #####
-# ##################### #
 
+########################################################################################
+#Step 5: Writing to Excel for analysis and visualization for specific day and time.
+# ##################### #
 # will write an xlsx file with all check outputs to project outputs folder with 
 # name including scenario, day and hour
 
@@ -166,14 +172,17 @@ output = list(timeseries= results
               ,Capacity_by_lot = cap_vs_demand
               ,On_Street_Share = on_street)
 
-write.xlsx(output,paste0(outputs,"\\",scen_name,"_checks_",the_day,the_hour,".xlsx"),overwrite=TRUE)
+write.xlsx(output,paste0(model_dir,scen_name,"_checks_",the_day,the_hour,".xlsx"),overwrite=TRUE)
 
 
-# Step 6: Updating the visualization file with new parking and timeseries info
+##############################################################################
+# Step 6: Full Analysis Updating the visualization file with new parking and timeseries info
 # Note: the Visualization Excel file will be overwritten.
+##############################################################################
 ### Adjust these model folder/names as necessary to create a path to the model and output
-model_folder="WinCityTests"
-output_folder <- "/../Output/base/baseoutput/"
-source("Source/save_visualization.R")
+#model_folder="WinCityTests"  #### old variable  delete?
+#output_folder <- "/../Output/base/baseoutput/"    #### old variable. delete?
+
+source("Post Process/Source/save_visualization.R")
 
 # write.csv(parking,paste0(outputs,"/parking.csv"),row.names=FALSE)

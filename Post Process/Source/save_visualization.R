@@ -10,18 +10,18 @@ library(openxlsx)
 # Adjust these folder directories where necessary to get correct file
 temp <- dirname(getwd())
 
-timeseries <- read.csv(paste(temp, model_folder, output_folder, "timeseries.csv", sep="/"))
+timeseries <- read.csv(paste(model_dir,scen_name, "timeseries.csv", sep="/"))
   
 
 # Parking shapefile already processed
 parking2 <- parking %>% data.frame()
 
 # Load workbook
-viz <- loadWorkbook("visualization.xlsx")
+viz <- loadWorkbook("Post Process/visualization.xlsx")
 
 writeData(viz, sheet = "timeseries", x=timeseries)
 writeData(viz, sheet = "parking_formatted", x=parking2)
 
 
 # Save workbook
-saveWorkbook(viz, "visualization.xlsx", overwrite = T)
+saveWorkbook(viz, scen_name,"visualization.xlsx", overwrite = T)

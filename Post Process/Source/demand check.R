@@ -19,7 +19,7 @@ library(ggplot2)
 
 
 generators2 = generators %>%
-  left_join(factors) %>%
+  left_join(factors, relationship = "many-to-many") %>%
   mutate(demand = SIZE * factor)
 
 
