@@ -27,10 +27,12 @@ def join_generators_to_lots(
 ):
     """One-to-many spatial join of generators to lots"""
 
+    print("supply length:", len(supply_gdf))
     supply_len = len(supply_gdf)
     supply_gdf = supply_gdf[supply_gdf[lot_capacity_col] > 0]
     LOGGER.info(f"removed {supply_len - len(supply_gdf)} lots with zero capacity")
 
+    print("supply demand:", len(demand_gdf))
     demand_len = len(demand_gdf)
     demand_gdf = demand_gdf[demand_gdf[gen_size_col] > 0]
     LOGGER.info(f"removed {demand_len - len(demand_gdf)} generators with zero demand")
@@ -217,6 +219,9 @@ def run(configs, factors_df=None):
 
     demand_gdf = configs.read_shapefile(demand_filename)
     supply_gdf = configs.read_shapefile(supply_filename)
+    if configs.get("lot_flag"):
+        demand_gdf = demand_gdf[demand_gdf['flag'] == 1]
+        supply_gdf = supply_gdf[supply_gdf['flag'] == 1]
 
     max_dist = configs.get("max_walk_dist")
     capacity_col = configs.get("lot_capacity_col")

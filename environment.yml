@@ -24,3 +24,4 @@ dependencies:
 
   # Other
   - pyyaml>=5.3.1,<6
+  - dask

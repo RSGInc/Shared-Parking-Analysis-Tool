@@ -1,0 +1,18 @@
+*.pyc
+*.egg-info/
+__pycache__/
+
+tests/test_logs/
+tests/winooski_example/output/
+tests/winooski_restrictions/output/
+test.py
+WinAveTests
+WinCityTests
+Output/base/baseoutput
+Inputs/Parking Demand and Adjustments.xlsx
+Inputs/restrict_list.csv
+Inputs/sample_gis.qgz
+
+# Mac
+.DS_Store
+.Rproj.user

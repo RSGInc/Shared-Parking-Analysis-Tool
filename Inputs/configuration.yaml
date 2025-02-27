@@ -89,6 +89,7 @@ private_lot_factor: 2.5
 cost_factor: 1.0
 
 redistribute_overflow: False
+lot_flag: False
 
 # Output files
 factors_filename: factors.csv

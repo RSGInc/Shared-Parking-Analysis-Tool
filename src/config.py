@@ -5,6 +5,7 @@ import yaml
 import logging
 
 import pandas as pd
+import numpy as np
 import geopandas as gpd
 
 from . import (
@@ -146,6 +147,36 @@ class Config:
         df.to_csv(filepath, index=False)
 
         LOGGER.info(f"{len(df)} lines written to {filepath}")
+
+    # def write_dataframe_pq(self, df, filename):
+
+    #     filepath = self.output_path(filename)
+    #     df.to_parquet(filepath, index=False, compression="snappy")
+
+    #     LOGGER.info(f"{len(df)} lines written to {filepath}")
+    # def write_dataframe_in_chunks(self, df, filename, chunk_size=10):
+    #     # filepath = self.output_path(filename)
+
+    #     n = np.ceil((len(df) // chunk_size))
+    #     for i in range(n):
+    #         start = i * chunk_size
+    #         end = start + chunk_size
+    #         df_chunk = df.iloc[start:end]
+    #         file_path = self.output_path(f"{filename}_{i+1}.csv") #need to change
+    #         df_chunk = df_chunk.compute()
+    #         df_chunk.to_csv(file_path)    
+        # for i, chunk_start in enumerate(range(0, len(df), chunk_size)):
+        #     chunk = df.iloc[chunk_start:chunk_start + chunk_size]
+
+        #     # Append if not the first chunk
+        #     if i == 0:
+        #         chunk.to_parquet(filepath, index=False, compression="snappy")
+        #     else:
+        #         chunk.to_parquet(filepath, index=False, compression="snappy", append=True)
+
+        #     print(f"Chunk {i + 1}: {len(chunk)} lines written to {filepath}")
+
+        # print(f"All chunks written to {filepath}")
 
     def read_input_dataframe(self, filename):
 

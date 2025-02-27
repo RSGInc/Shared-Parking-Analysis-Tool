@@ -1,0 +1,26 @@
+name: shared_parking
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Python
+  - python=3.8
+
+  # Data Processing
+  - pandas>=1.0.1,<2
+  - numpy>=1.16.1,<2
+  - openpyxl  # to help pandas read excel files
+
+  # Geospatial
+  - geopandas>=0.8.1,<1
+  - pygeos  # vectorized spatial ops with geopandas
+
+  # Testing
+  - pytest
+
+  # Linting and Formatting
+  - black
+  - flake8
+
+  # Other
+  - pyyaml>=5.3.1,<6
