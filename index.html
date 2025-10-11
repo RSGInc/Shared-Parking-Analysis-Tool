@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Shared Use Parking Model</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Shared Use Parking Model
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#background">Background</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-guide">How To Use This Guide</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Shared Use Parking Model</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>Shared Parking Analysis Tool</p>
+<table>
+</tr>
+<tr class="odd">
+<td colspan="2"><img src="./docs/assets/media/image1.jpeg"
+style="width:6.42607in;height:7.30895in"
+alt="A picture containing diagram Description automatically generated" /></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p><strong>2025</strong></p>
+</blockquote></td>
+<td>
+**Chittenden County Regional Planning Commission**
+
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><img src="./docs/assets/media/image3.jpeg"
+style="width:4.14375in;height:1.44653in"
+alt="Chittenden County Regional Planning Commission" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Report Title</strong>:</p>
+<p>Shared Parking Analysis Tool</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Report Prepared by</strong>: RSG</p>
+<p>V1: 2023</p>
+<p>V2.1: April 2025</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Report Prepared for</strong>:</p>
+<p>Chittenden County Regional Planning Commission</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>For additional information regarding this report, or for
+questions about permissions or use of findings contained therein, please
+contact</strong>:</p>
+<p>RSG (Headquarters)<br />
+55 Railroad Row<br />
+White River Junction, VT 05001<br />
+(802) 295-4999<br />
+www.rsginc.com</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>© 2023 RSG</p>
+<p><a href="#introduction">1.0 Introduction [1](#introduction)</a></p>
+<p><a href="#background">1.1 Background [1](#background)</a></p>
+<p><a href="#how-to-use-this-guide">1.2 How To Use This Guide
+[1](#how-to-use-this-guide)</a></p>
+<p><a href="#using-spa">2.0 Using SPA [2](#using-spa)</a></p>
+<p><a href="#background-software">2.1 Background Software
+[2](#background-software)</a></p>
+<p><a href="#download-the-spa-code">2.2 Download the SPA code
+[3](#download-the-spa-code)</a></p>
+<p><a href="#installation-of-the-spa-tool">2.3 Installation of the SPA Tool
+[4](#installation-of-the-spa-tool)</a></p>
+<p><a href="#input-files">2.4 Input Files [6](#input-files)</a></p>
+<p><a href="#generators-gis-file">Generators – GIS File [6](#generators-gis-file)</a></p>
+<p><a href="#parking-supply-gis-file">Parking Supply – GIS File
+[7](#parking-supply-gis-file)</a></p>
+<p><a href="#parking-demand-and-adjustments.xlsx">Parking Demand and Adjustments.xlsx
+[8](#parking-demand-and-adjustments.xlsx)</a></p>
+<p><a href="#restrict-list-restrict_list.csv">Restrict List (restrict_list.csv)
+[9](#restrict-list-restrict_list.csv)</a></p>
+<p><a href="#configuration.yaml">Configuration.YAML [9](#configuration.yaml)</a></p>
+<p><a href="#running-the-tool">2.5 Running the Tool [10](#running-the-tool)</a></p>
+<p><a href="#output-data-and-results">3.0 Output Data and Results
+[11](#output-data-and-results)</a></p>
+<p><a href="#csv-outputs">3.1 CSV outputs [11](#csv-outputs)</a></p>
+<p><a href="#post-processing">3.2 Post-processing [11](#post-processing)</a></p>
+<p><a href="#post-processing-output">3.3 post-processing output
+[15](#post-processing-output)</a></p>
+<p><a href="#calibration-and-refining-input-data">4.0 Calibration and Refining Input Data
+[19](#calibration-and-refining-input-data)</a></p>
+<p><a href="#tool-methodology">5.0 Tool Methodology [20](#tool-methodology)</a></p>
+<p><strong>List of Figures</strong></p>
+<p><a href="#_Ref112935956">Figure 1: Anaconda Prompt [8](#_Ref112935956)</a></p>
+<p><a href="#_Toc140350913">Figure 2: Conda Environment Install
+[9](#_Toc140350913)</a></p>
+<p><a href="#_Toc140350914">Figure 3: Conda Python Environment (after)
+[9](#_Toc140350914)</a></p>
+<p><a href="#_Toc140436500">Figure 4: post process step 1 - load packages
+[12](#_Toc140436500)</a></p>
+<p><a href="#_Toc140436501">Figure 5: post process step 2 - define project &amp; loading inputs
+[12](#_Toc140436501)</a></p>
+<p><a href="#_Toc140436502">Figure 6: post process step 2 - define project, setting directories
+[13](#_Toc140436502)</a></p>
+<p><strong>List of Tables</strong></p>
+<p><strong>No table of figures entries found.</strong></p>
+<h1 id="introduction">Introduction</h1>
+<h2 id="background">Background</h2>
+<p>This user guide provides instructions for the Shared Parking Analysis
+(SPA) tool developed by the Chittenden County Regional Planning
+Commission (CCRPC) with support from RSG. The SPA tool models shared
+parking demand for specific geographic areas based on land use and
+adjustment factors by month, day of week, and time of day.</p>
+<p>The SPA uses parking demand factors from <u>Shared Parking, Third
+Edition</u> by the Urban Land Institute[^1] (ULI) are incorporated by
+default, although the tool is flexible to accept user specific inputs
+along with other parking demand factors.</p>
+<p>The SPA uses open-source software in both Python and R software
+languages complemented by any GIS program that can generate a Shapefile
+with latitude and longitude location data for both the source of parking
+demand (i.e., land uses) and the parking lots (parking supply).</p>
+<p>The SPA is a unique and powerful tool that expands the methodology
+developed by the ULI. Rather than the typical ULI Shared Parking
+analysis as a many demand to one lot analysis, The SPA tool evaluates
+multiple parking demands across multiple possible parking lots.</p>
+<h2 id="how-to-use-this-guide">How To Use This Guide</h2>
+<p>This guide sets out the process for developing the inputs for the SPA,
+installing and running the SPA tool, and using the post process
+visualization summary in Excel.</p>
+<p>This guide provides chapters on:</p>
+<ul>
+<li>
+<p>Preparing SPA inputs</p>
+</li>
+<li>
+<p>Running the SPA tool</p>
+</li>
+<li>
+<p>Analyzing the results</p>
+</li>
+<li>
+<p>Testing the effect of adding a new generator to an existing population
+  of parking lots and generators</p>
+</li>
+<li>
+<p>Refining the input data with real world observations</p>
+</li>
+</ul>
+<p>File names are in <em>italics</em>.</p>
+<p>Tab names in an Excel file are in <strong>bold</strong>.</p>
+<h1 id="using-spa">Using SPA</h1>
+<p>This chapter sets out the process for installing the necessary software
+to run the SPA tool.</p>
+<h2 id="background-software">Background Software</h2>
+<p>Several pieces of software are necessary to develop the inputs and run
+the SPA tool. These include the following:</p>
+<ul>
+<li><strong>conda via <a href="https://www.anaconda.com/products/individual">Anaconda</a> or <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></strong>:
+  Conda is an open-source package management and environment management
+  system that simplifies the installation and management of software
+  packages and dependencies across multiple programming languages. It
+  allows users to create isolated environments to run different projects
+  with specific package versions and configurations.</li>
+</ul>
+<blockquote>
+<p><img src="./docs/assets/media/image5.png"
+style="width:4.8732in;height:2.20633in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>R</strong>. R is a free and open-source programming language and software
+  environment primarily used for statistical computing and graphics. It
+  provides a wide range of statistical and graphical techniques and has
+  a large community of users and developers contributing to its
+  extensive collection of packages.</p>
+</li>
+<li>
+<p><strong>R Studio</strong>. RStudio is an integrated development environment (IDE)
+  for the R programming language. It provides a user-friendly interface
+  and various tools to enhance productivity, making it easier to write,
+  run, and debug R code while offering features like code editing, data
+  visualization, and package management.</p>
+</li>
+</ul>
+<blockquote>
+<p><img src="./docs/assets/media/image6.png"
+style="width:4.8732in;height:2.97379in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+</blockquote>
+<ul>
+<li><strong>GIS (qGIS, ArcGIS, ArcMap)</strong>. GIS software (Geographic Information
+  System) is a type of software designed for capturing, analyzing,
+  managing, and presenting geographic data. It enables users to
+  visualize spatial information, perform spatial analysis, create maps,
+  and make informed decisions based on geographical data. QGIS is an
+  open source GIS program while ArcGIS and ArcMap are proprietary ESRI
+  products.</li>
+</ul>
+<h2 id="download-the-spa-code">Download the SPA code</h2>
+<p>The SPA Source code is stored in a GitHub repository. In order to use
+the SPA tool the user is required to download the code by cloning the
+repository or downloading the zip file of the repository from GitHub.</p>
+<p>The GitHub repository has the following files:</p>
+<p><img src="./docs/assets/media/image7.png"
+style="width:4.65932in;height:3.00829in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+<p>The SPA ‘Shared_Parking’ folder should be moved to the location on the
+local machine where it will be called. Typically, a location near to the
+root C: drive or in a My Documents location is used.</p>
+<h2 id="installation-of-the-spa-tool">Installation of the SPA Tool</h2>
+<p>The installation of the SPA tool requires the use of setting up a python
+environment using the Anaconda python interface.</p>
+<p>Use the Start menu to find the Anaconda Prompt (see Figure 1). A command
+window opens. Using commands you need to navigate to the shared_parking
+folder.</p>
+<p><span id="_Ref112935956" class="anchor"></span>Figure : Anaconda Prompt</p>
+<p><img src="./docs/assets/media/image8.png"
+style="width:2.64986in;height:2.59967in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+<p>For an example stored on the C drive in a GitHub folder</p>
+<ul>
+<li>cd c:\GitHub\shared_parking</li>
+</ul>
+<p>Once the command window is setup to point to the shared_parking folder,
+install the Shared_Parking environment.</p>
+<ul>
+<li>conda env create -f environment.yml</li>
+</ul>
+<p><span id="_Toc140350913" class="anchor"></span>Figure : Conda
+Environment Install</p>
+<p><img src="./docs/assets/media/image9.png"
+style="width:6.5in;height:1.29236in"
+alt="A screen shot of a computer Description automatically generated" /></p>
+<p>The environment loads the necessary supporting software packages into
+the Python environment so that the analysis can be completed.</p>
+<p><span id="_Toc140350914" class="anchor"></span>Figure : Conda Python
+Environment (after)</p>
+<p><img src="./docs/assets/media/image10.png"
+style="width:6.5in;height:1.75217in"
+alt="A screen shot of a computer Description automatically generated" /></p>
+<h2 id="input-files">Input Files</h2>
+<p>The next chapter sets out the process for setting up the inputs. The
+model input files are comprised of three components:</p>
+<ul>
+<li>
+<p>Generators: the land uses that generate the demand for parking</p>
+</li>
+<li>
+<p>Parking: the supply of parking spaces</p>
+</li>
+<li>
+<p>Demand and Adjustment file: this is the ULI rates of parking demand by
+  land use.</p>
+</li>
+<li>
+<p>Python Configuration file</p>
+</li>
+</ul>
+<h3 id="generators-gis-file">Generators – GIS File</h3>
+<p>The parking generator data are spatial datasets that are used to specify
+the land uses which are associated with a level of parking demand. The
+tool requires GIS shapefiles that include the specific land uses and the
+land use characteristics for any scenarios to be tested in the SPA tool.
+The shapefile is created in a GIS program.</p>
+<p>The generator shapefile has the following data fields:</p>
+<ul>
+<li>
+<p>Name – Name of the parking generator. This column is not directly used
+  in the tool and is there only to help the user identify the generator.
+  <em>optional</em></p>
+</li>
+<li>
+<p>Address – Physical address of the land use. <em>optional</em></p>
+</li>
+<li>
+<p>Gen_ID – Unique ID associated with each generator. <strong><em>mandatory</em>.</strong></p>
+</li>
+<li>
+<p>Long &amp; Lat – are the longitude and latitude of the centroid of the
+  land use. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>NAICS – code for distinguishing the land use that generates parking
+  demand. This code and the description are useful for the user to
+  select the most appropriate land use code for aligning the land use to
+  the Shared Parking methodology. <em>optional</em></p>
+</li>
+<li>
+<p>NAICS Desc – the description for the NAICS code. <em>optional</em></p>
+</li>
+<li>
+<p>Land Use – general description of the land use, either zoning, or some
+  other local definition. <em>optional</em></p>
+</li>
+<li>
+<p>LUC – Land Use Code of a particular generator’s land use. This number
+  must match a land use code in the <em>Land Use Demand</em> file and
+  <em>Adjustment Factors</em> file. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>Type – Description of the type of land use. Similar, if not identical
+  to, the Land Use field. <em>optional</em></p>
+</li>
+<li>
+<p>Unit – The unit in which size is measured. The unit type must match
+  the Land Use’s unit type in the <em>Land Use Demand</em> file.
+  <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>Size – The size of the land use in the units specified. For example,
+  number of housing units or the square footage of a specific
+  nonresidential use. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>DUType – SF single family &amp; MF multifamily. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>DUCount – the number of households living in the structure.
+  <strong><em>mandatory</em></strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>GEN_NAME</th>
+<th>GEN_ADDR</th>
+<th>GEN_UID</th>
+<th>GEN_LON</th>
+<th>GEN_LAT</th>
+<th>NAICS</th>
+<th>NAICS_DESC</th>
+<th>LAND_USE</th>
+<th>LUC</th>
+<th>TYPE</th>
+<th>UNIT</th>
+<th>SIZE</th>
+<th>DUTYPE</th>
+<th>DUCOUNT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BAKER'S DOZEN INC</strong></td>
+<td><strong>70 Roosevelt Hwy Ste 2</strong></td>
+<td><strong>100</strong></td>
+<td><strong>-73.1816388468</strong></td>
+<td><strong>44.5032888286</strong></td>
+<td><strong>31</strong></td>
+<td><strong>Manufacturing</strong></td>
+<td><strong>Industrial</strong></td>
+<td><strong>60</strong></td>
+<td><strong>Industrial</strong></td>
+<td><strong>ksf GLA</strong></td>
+<td><strong>6.756</strong></td>
+<td></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="parking-supply-gis-file">Parking Supply – GIS File</h3>
+<p>The parking supply data are spatial datasets that are used to specify
+the characteristics of the parking lots. The tool requires GIS
+shapefiles that includes information pertaining to the parking lot, who
+may have access to the lot, and other aspects. The shapefile is created
+in a GIS program.</p>
+<p>Sample parking generator lot:</p>
+<table>
+<thead>
+<tr>
+<th>LOT_NAME</th>
+<th>SPACE_TOT</th>
+<th>LOT_UID</th>
+<th>LOT_LON</th>
+<th>LOT_LAT</th>
+<th>RESTRICT</th>
+<th>LOT_GEN_ID</th>
+<th>Shape_Leng</th>
+<th>Shape_Area</th>
+<th>NOTES</th>
+<th>Category</th>
+<th>Street</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lapointe Street</td>
+<td>21</td>
+<td>1</td>
+<td>-73.1746875862</td>
+<td>44.4972150788</td>
+<td>0</td>
+<td>0</td>
+<td>407.050748091</td>
+<td>611.072401597</td>
+<td></td>
+<td>On Street</td>
+<td>Lapointe St</td>
+</tr>
+</tbody>
+</table>
+<p>The parking supply shapefile has the following data fields:</p>
+<ul>
+<li>
+<p>Name – Name of the parking location. <em>optional</em></p>
+</li>
+<li>
+<p>Space_Tot – the number of parking spaces in the parking lot.
+  <em>optional</em></p>
+</li>
+<li>
+<p>Lot_UID - Unique ID associated with each generator. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>Long &amp; Lat – are the longitude and latitude of the centroid of the
+  parking supply. <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>Restrict – this code specifies who can park in the parking spaces.
+  <strong><em>mandatory</em></strong></p>
+</li>
+<li>
+<p>Lot_Gen_ID: if there is a specific land use that it is connected with.</p>
+</li>
+<li>
+<p>Shape_length – information on the parking polygon. <em>optional</em></p>
+</li>
+<li>
+<p>Shape_area – information on the parking polygon. <em>optional</em></p>
+</li>
+<li>
+<p>Category – on-street, off-street, residential, etc. <em>optional</em></p>
+</li>
+<li>
+<p>Street – the name of the street it is most closely associated with.
+  <em>optional</em></p>
+</li>
+</ul>
+<h3 id="parking-demand-and-adjustmentsxlsx">Parking Demand and Adjustments.xlsx</h3>
+<p>This Excel file contains parking demand ratios for the land uses in the
+<em>Generators</em> folder. The SPA tool uses demand factors and adjustments
+from the second edition of <u>Shared Parking</u>, but different data can
+be used as long as it conforms to the same format. For example, if any
+local data is collected, the parking rates can be adjusted in this Excel
+file to reflect local conditions. The Parking Demand and Adjustment file
+includes all hours, months, and seasons of the year. The following
+fields are used within the Excel file to define the parking generation
+demand for the land uses.</p>
+<ul>
+<li>LUC – Land Use Codes. These numbers can be arbitrary, but they must
+  match the land use codes in the <em>Generators</em> file (LUC column).</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>
+<p>Land Use – Description of the type of land use. This column is not
+  used in the tool.</p>
+</li>
+<li>
+<p>User – Either “Visitor/Customer” or “Employee.” These two types of
+  users have different parking demand ratios. In the case of housing,
+  residents’ parking demand appears under “Employee.”</p>
+</li>
+<li>
+<p>Weekday – Weekday demand ratio, the number of parking spaces per unit
+  required at peak weekday times.</p>
+</li>
+<li>
+<p>Weekend – Weekend demand ratio, the number of parking spaces per unit
+  required at peak weekend times.</p>
+</li>
+<li>
+<p>Unit – The units which correspond to the demand ratios.</p>
+</li>
+</ul>
+<p>Sample data is shown below:</p>
+<p><img src="./docs/assets/media/image11.png"
+style="width:6.5in;height:1.06111in"
+alt="A white background with black text Description automatically generated" /></p>
+<p>The Excel file includes the Land Use, Monthly parking demand factors,
+and a Time of Day (TOD) worksheet.</p>
+<h3 id="restrict-list-restrict_listcsv">Restrict List (restrict_list.csv)</h3>
+<p>The restrict list is a file designed to limit the land uses who are
+allowed to park in specific parking areas. The CSV includes two columns
+of data which specifies for any specific lots, whether that demand can
+park there or not. The demand (GEN_UID) is attempted to be first
+allocated to these parking lots (LOT_UID), but is allowed to park
+elsewhere. But if the LOT_UID is specified in this file, then only those
+Generators listed will be able to be allocated there. The table shows a
+sample restrict file.</p>
+<p><img src="./docs/assets/media/image12.png"
+style="width:1.25612in;height:2.57165in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+<p>The Restrict Codes are used to inform which land uses can park in the
+specific parking lots.</p>
+<p><img src="./docs/assets/media/image13.png"
+style="width:5.55208in;height:2.57292in"
+alt="A computer screen with text AI-generated content may be incorrect." /></p>
+<h3 id="configurationyaml">Configuration.YAML</h3>
+<p>Python uses a configuration file to guide the collection of the input
+files and direct outputs to specific locations. This
+‘<em>Configuration.yaml</em>’ file is the necessary link between the data and
+the analysis. The file has several sections and areas for the user to
+input specific file names and folders for the parking analysis.</p>
+<p>The file includes information on months to analyze, days of the week,
+hours of the day, etc.</p>
+<ul>
+<li>
+<p><em>data_dir: data</em> #this is the folder where the data inputs are
+  stored. These data include:</p>
+</li>
+<li>
+<p>parking generation shapefile</p>
+</li>
+<li>
+<p>parking supply shapefile</p>
+</li>
+<li>
+<p>Parking demand and adjustments file</p>
+</li>
+<li>
+<p>Restricted parking lot file</p>
+</li>
+<li>
+<p><em>output_dir: baseoutput</em> #this is the name of the folder where the
+  output from the SPA will go.</p>
+</li>
+<li>
+<p><em>factors_file: </em><em>'Parking Demand and Adjustments.xlsx'</em>** #excel file
+  with worksheets</p>
+</li>
+<li>
+<p><em>monthly_sheetname: Monthly</em> #worksheet name with monthly parking
+  factors</p>
+</li>
+<li>
+<p><em>daily_sheetname: LandUse</em> #worksheet name with daily parking rates</p>
+</li>
+<li>
+<p><em>hourly_sheetname: TOD</em> #worksheet name with hourly parking rates</p>
+</li>
+</ul>
+<p>Other data is specified in the configuration file but shouldn’t need to
+be changed such as the name of the land use columns, and setting other
+variable names in the Parking Demand and Adjustments Excel file.</p>
+<p>The configuration file requires the name of the specific demand (i.e.,
+Generator) file and the supply file.</p>
+<ul>
+<li>
+<p>demand_shapefile: <strong>WinCity_Calibratedbased.shp</strong></p>
+</li>
+<li>
+<p>supply_shapefile: <strong>WinCity_BaseCalibration_Supply.shp</strong></p>
+</li>
+</ul>
+<p>Other data in the file shouldn’t need to be altered, but the YAML does
+provide flexibility on other key model parameters and inputs. Several of
+which are used in the calibration process to adjust parking rates and
+the attractiveness of certain lots.</p>
+<h2 id="running-the-tool">Running the Tool</h2>
+<p>Once the conda environment has been activated then the tool is ready for
+running. Enter the following command to run the tool:</p>
+<ul>
+<li>Run “<em>python run_model.py -c
+  tests/winooski_example/configuration.yaml</em>” to use the example
+  configuration. This will generate output files for use in the
+  post-processing R scripts. Note, the later part of the python code
+  points to the location of the Configuration YAML file.</li>
+</ul>
+<h1 id="output-data-and-results">Output Data and Results</h1>
+<h2 id="csv-outputs">CSV outputs</h2>
+<p>The Shared Parking Analysis Tool’s Post-Processing R Scripts are
+designed to extract data from the CSV output files are created after
+running the Python script. These include: This section describes the
+format of the output files generated by the Python SPA:</p>
+<ul>
+<li>
+<p>Demand: Demand for individual lots.</p>
+</li>
+<li>
+<p>Factors: Hourly adjustment factors for weekdays and weekends.</p>
+</li>
+<li>
+<p>Gen_lots: Parking generators with generator and lot IDs.</p>
+</li>
+<li>
+<p>Preference: Generates information for parking preferences.</p>
+</li>
+<li>
+<p>Timeseries: A timeseries showing utilization by lot.</p>
+</li>
+</ul>
+<h2 id="post-processing">Post-processing</h2>
+<p>The post-process Excel visualization file will be created by running the
+R script, “<em>Post Process.R</em>” in the Post Process folder. This is the
+main file that can run all other supporting scripts to analyze the
+outputs from the SPA. Note, that required libraries will be called in
+the R script but may require installation before running the script.
+These libraries are similar to the packages that were installed during
+the building of the Shared_Parking environment in the Python setup.</p>
+<p>The supporting R scripts called by the Post Process.R script are located
+within the subfolder titled “Source” in the R project directory. The
+Source directory contains the following supporting files:</p>
+<ul>
+<li><em>read_shapefiles.R</em>: Open’s shapefiles of generated parking lots.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>
+<p><em>specific_gens_lots.R</em>: Gets demand information for one or more
+  generators or parking lots using generator and lot ID variables.</p>
+</li>
+<li>
+<p><em>constraint check.R</em>: Generates summary space constraints on parking
+  lots and demand.</p>
+</li>
+<li>
+<p><em>counts_analysis.R</em>: Generates parking counts for on and off-street
+  parking during weekdays and weekends.</p>
+</li>
+<li>
+<p><em>demand_check.R</em>: Estimates total parking unconstrained demand versus
+  demand in the parking model.</p>
+</li>
+</ul>
+<p><span id="_Toc140436500" class="anchor"></span>Figure : post process
+step 1 - load packages</p>
+<p><img src="./docs/assets/media/image14.png"
+style="width:6.5in;height:1.91597in"
+alt="Text Description automatically generated" /></p>
+<p>Running the post process will require defining the project type and
+editing directory selections within the script to correctly call and
+store files. The projects available for analysis include “Winooski_city”
+and “Winooski_ave.” The directory called from for “model_dir” should
+contain the output from Python scripts used in the SPA. The directory
+called from “dir” should contain a folder titled “Outputs” for storing
+post processing results.</p>
+<p><span id="_Toc140436501" class="anchor"></span>Figure : post process
+step 2 - define project &amp; loading inputs</p>
+<p><img src="./docs/assets/media/image15.png"
+style="width:6.5in;height:2.42361in"
+alt="Text Description automatically generated" /></p>
+<p><span id="_Toc140436502" class="anchor"></span>Figure : post process
+step 2 - define project, setting directories</p>
+<p><img src="./docs/assets/media/image16.png"
+style="width:6.5in;height:1.82847in"
+alt="Text Description automatically generated" /></p>
+<p>Step 3 reads data outputs from the Python model and shapefile inputs
+used for the SPA model run using the “<em>read_shapefiles.R</em>” script.
+<span class="mark">The folder “Source” must be in the same directory as
+the R Project in order these scripts.</span></p>
+<p>Figure : post process step 3 – read data</p>
+<p><img src="./docs/assets/media/image17.png"
+style="width:6.5in;height:1.55972in"
+alt="Text Description automatically generated" /></p>
+<p>Step 4 analyzes the parking data to project capacity versus demand
+stored in usable output files. Run the constraint check section to plot
+demand vs capacity for both the model and unconstrained demand given the
+SPA outputs.</p>
+<p>Figure : post process step 4 – constraint check</p>
+<p><img src="./docs/assets/media/image18.png"
+style="width:6.5in;height:2.58472in"
+alt="A screenshot of a computer Description automatically generated" /></p>
+<p>Running the script file “counts_analysis.R” will develop counts for
+weekday and weekend to project demand by hour, day, and month. Land use
+codes can be adjusted for on-street shared parking as well.</p>
+<p>Figure : post process step 4 – counts analysis</p>
+<p><img src="./docs/assets/media/image19.png"
+style="width:6.5in;height:3.02847in"
+alt="Text Description automatically generated" /></p>
+<p>Running the last step will export an Excel output to the “Outputs”
+folder under the output directory.</p>
+<p>Figure : post process step 5 – write output</p>
+<p><img src="./docs/assets/media/image20.png"
+style="width:6.5in;height:2.16328in"
+alt="Text Description automatically generated" /></p>
+<h2 id="post-processing-output">post-processing output</h2>
+<p>Post-processing will store an Excel file titled “Visualization.XLSX” to
+the chosen directory. The file contains the following tabs:</p>
+<ul>
+<li>
+<p>“Overall summaries” contains pivot tables showing high-level summaries
+  with changeable filters.</p>
+</li>
+<li>
+<p>“OnStreet 3 period” shows on-street parking utilization for hours
+  8:00, 13:00, and 18:00 by street.</p>
+</li>
+<li>
+<p>“Single Street Pivot” shows parking demand and utilization parking
+  over a 1-day period for a given street.</p>
+</li>
+<li>
+<p>“parking_formatted” shows geographic information of parking lots.</p>
+</li>
+<li>
+<p>“timeseries” contains raw data for parking utilization by street,
+  time, and land use.</p>
+</li>
+</ul>
+<p>The first table in the “Overall summaries” worksheet shows the following
+data points for a for a given month, day (weekday vs weekend), and hour:</p>
+<ul>
+<li>
+<p>The total number of spaces (“Sum of SPACE_TOT”).</p>
+</li>
+<li>
+<p>Total utilized spaces by land use type (“Sum of demand”).</p>
+</li>
+</ul>
+<p><img src="./docs/assets/media/image21.png"
+style="width:4.00744in;height:2.11692in"
+alt="Graphical user interface, table Description automatically generated" /></p>
+<p>figure 10: overall summaries output 1</p>
+<p>In contrast, the second table, “OnStreet 3 Period,” can also be filtered
+by land use category and is analyzed at a lot-specific level. This table
+includes the same analyzed variables and percent utilization for each
+lot (“Sum of PctFull”).</p>
+<p><img src="./docs/assets/media/image22.png"
+style="width:4.95003in;height:3.35502in"
+alt="Table Description automatically generated" /></p>
+<p>figure 11: overall summaries output 2</p>
+<p>The table in this worksheet shows utilization rates for each parking lot
+(“Lot_UID”) at hours 8:00, 13:00, and 16:00, organized by street. This
+also shows a grand total utilization rate for a 24-hour period. These
+can be filtered by month, day, and land use category.</p>
+<p><img src="./docs/assets/media/image23.png"
+style="width:5.4209in;height:4.15306in"
+alt="Table Description automatically generated" /></p>
+<p>figure 12: onstreet 3 period output</p>
+<p>This worksheet shows aggregated parking utilization for a given street
+by hours 0:00 and 6:00-23:00. The table includes:</p>
+<ul>
+<li>
+<p>Total parking spaces (“Sum of SPACE_TOT”)</p>
+</li>
+<li>
+<p>Utilized spaces/demand (“Sum of demand”)</p>
+</li>
+<li>
+<p>Percent utilization (“Sum of PctFull”)</p>
+</li>
+</ul>
+<p>These observations can be filtered by month, day, and street.</p>
+<p><img src="./docs/assets/media/image24.png"
+style="width:7.08543in;height:3.10694in"
+alt="Graphical user interface, table Description automatically generated" /></p>
+<p>figure 13: single street pivot output</p>
+<p>The user should check these results for reasonableness. Do they
+generally agree with the user’s expectation? Do they agree with
+anecdotal data on this location? If not, the user should double check
+the inputs and consider if there are special cases in this area that do
+not conform well with the default demand and adjustment factors.</p>
+<h1 id="calibration-and-refining-input-data">Calibration and Refining Input Data</h1>
+<p>The SPA tool uses a generic dataset of national data from <u>Shared
+Parking</u>. It should be used as a planning tool to understand the
+effects of shared parking, both where excess capacity may exist and
+where a new generator may require more parking than is currently
+available. Like all planning data, the demand and adjustment factors
+used here are not perfect, and the user should be careful when demand is
+shown to be close to supply.</p>
+<p>There are a variety of reasons a user may want to change the demand and
+adjustments factors. A user may decide to use local data for time
+adjustment factors or use a higher generation rate for a particularly
+popular generator. The available land use codes may not cover a desired
+land use type. <u>Shared Parking</u> explains its methods for data
+collection and how to collect local data.</p>
+<p>A good first step is to perform field counts at the times the SPA tool
+indicates peak demand occurs. It may also be helpful to compare
+anecdotal data for particular times with what the tool’s output
+indicates. These observations may show that the tool is generally
+accurate, or over- or under-estimating peak demand. It is also possible
+that some stores are not open when the default factors are showing they
+have demand, e.g. restaurants that are not open after midnight.</p>
+<p>If the user determines that the demand and adjustment factors need to be
+refined, the user should perform parking lot counts in accordance with
+the <u>Shared Parking</u> methodology. It may be possible to perform
+counts at only the times of highest demand and adjust the factors
+accordingly and thus avoid counting all 26 days of factors. Changing
+factors to reflect store hour hours will also help calibrate a
+particular area.</p>
+<h1 id="tool-methodology">Tool Methodology</h1>
+<p>The premise of the SPA tool is that for each hour of the analysis it
+goes through an iterative process of:</p>
+<ul>
+<li>
+<p>Estimating the parking demand generated by each of the land uses in
+  the model shapefile</p>
+</li>
+<li>
+<p>Allocates that demand based on a utility function subject to size
+  constraints and restrictions on which land uses can part in which
+  lots.</p>
+</li>
+</ul>
+<p>The SPA tool uses the parking demand estimates for each land use from
+the Urban Land Institute’s <u>Shared Parking</u> guide.</p>
+<p>The SPA tool calculates each hour of demand independently, using the
+hourly factors from Shared Parking. This aggregate approach avoids the
+need to estimate the individual parking behaviors of each individual
+vehicle in the network and rather model the overall demand at each time
+period separately.</p>
+<p>The analysis considers:</p>
+<ul>
+<li>
+<p>Time of Day: 6 AM – Midnight</p>
+</li>
+<li>
+<p>Day: Weekday or Weekend</p>
+</li>
+<li>
+<p>Time of Year: all 12 months and December after Christmas (termed “Late
+  December”)</p>
+</li>
+</ul>
+<p>[^1]: Smith, Mary S. <em>Shared Parking</em>, Third Edition. Washington, D.C.:
+    ULI-the Urban Land Institute and the International Council of
+    Shopping Centers, 2020.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-10-11 01:17:05.747367+00:00
+-->
