@@ -14,6 +14,7 @@ import logging
 
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 
 LOT_DIST_COL = "lot_distance"
 PRIVATE_LOT_COL = "private_lot"
@@ -27,12 +28,10 @@ def join_generators_to_lots(
 ):
     """One-to-many spatial join of generators to lots"""
 
-    print("supply length:", len(supply_gdf))
     supply_len = len(supply_gdf)
     supply_gdf = supply_gdf[supply_gdf[lot_capacity_col] > 0]
     LOGGER.info(f"removed {supply_len - len(supply_gdf)} lots with zero capacity")
 
-    print("supply demand:", len(demand_gdf))
     demand_len = len(demand_gdf)
     demand_gdf = demand_gdf[demand_gdf[gen_size_col] > 0]
     LOGGER.info(f"removed {demand_len - len(demand_gdf)} generators with zero demand")
@@ -68,6 +67,7 @@ def generate_preference(
     month_col,
     hour_col,
     restrict_df=None,
+    restrict_df2=None,
 ):
     """
     Filter lot availability according to restriction codes.
@@ -83,6 +83,7 @@ def generate_preference(
     4: Same as code 3 but only available between 9am and 6pm weekdays
     5: Metered parking. Adds cost to lot.
     6: Same as 5 but only available between 9am and 6pm weekdays
+    7: Generator-specific lot access (e.g., gen 244 can only park in lot 48 and 49) .  Need to use the Restrict_list2.csv
 
     Parameters
     ----------
@@ -112,7 +113,7 @@ def generate_preference(
     original_length = len(gen_dist_df)
     LOGGER.debug(f"total generator/lot pairs: {original_length}")
 
-    ### Time-independent restrictions ###
+    ### Time-independent restrictions ###   
 
     # Restrict Code 1: Remove residental-only lots for non-residents
     gen_dist_df = gen_dist_df[
@@ -121,7 +122,6 @@ def generate_preference(
             & (gen_dist_df[gen_id_col] != gen_dist_df[lot_gen_id_col])
         )
     ]
-
     updated_length = len(gen_dist_df) - original_length
     LOGGER.debug(f"removed {updated_length} invalid residential pairs")
 
@@ -141,9 +141,38 @@ def generate_preference(
             & (gen_dist_df[lot_luc_col].isin(lot_res_codes))
         )
     ]
-
     updated_length = len(gen_dist_df) - updated_length
     LOGGER.debug(f"removed {updated_length} invalid zone combinations")
+
+    # Restriction Code 7: Generator-specific lot access (Generator 244 can only park in lots 48 & 49 and restricted to look up table)
+    if restrict_df2 is not None:
+        assert gen_id_col in restrict_df2.columns and lot_id_col in restrict_df2.columns, \
+            f"restrict_df2 must contain '{gen_id_col}' and '{lot_id_col}' columns"
+
+        restrict_7 = gen_dist_df[restrict_col] == 7
+        restrict_7_df = gen_dist_df[restrict_7].copy()
+
+        gen_dist_df = gen_dist_df[~restrict_7]
+        allowed_pairs = restrict_df2[[gen_id_col, lot_id_col]].drop_duplicates()
+        restrict_7_df = pd.merge(
+            restrict_7_df, allowed_pairs, 
+            on=[gen_id_col, lot_id_col], 
+            how="inner"
+            )
+
+        gen_dist_df = pd.concat([gen_dist_df, restrict_7_df], ignore_index=True)
+
+        # remove any unauthorized non-restrict-7 matches for restricted generators
+        restricted_gen_ids = restrict_df2[gen_id_col].unique()
+        gen_dist_df = gen_dist_df[
+            ~(
+                (gen_dist_df[gen_id_col].isin(restricted_gen_ids)) &  # restricted gen_id
+                (gen_dist_df[restrict_col] != 7)                       # parking in unrestricted lots
+            )
+        ]
+
+        updated_length = len(gen_dist_df) - updated_length
+        LOGGER.debug(f"removed {updated_length} invalid zone combinations")
 
     if restrict_df is not None:
 
@@ -160,8 +189,8 @@ def generate_preference(
             on=[lot_id_col, gen_id_col],
             how="inner",
         )
-
         gen_dist_df = pd.concat([gen_dist_df, restrict_3_df])
+
 
         updated_length = len(gen_dist_df) - updated_length
         LOGGER.debug(f"Restrict code 3 table: removed {updated_length} lot/gen pairs")
@@ -176,7 +205,6 @@ def generate_preference(
     lot_pref_df = factors_df.merge(gen_dist_df, on=lot_luc_col, how="outer").dropna()
 
     if restrict_df is not None:
-
         orig_length = len(lot_pref_df)
 
         restrict_4 = (
@@ -200,12 +228,12 @@ def generate_preference(
         updated_length = len(lot_pref_df) - orig_length
         LOGGER.debug(f"Restrict code 4 table: removed {updated_length} lot/gen pairs")
 
-    # Restrict Code 6: 9 to 6 metered parking
+    # Restrict Code 6: 8 to 8 metered parking
     lot_pref_df.loc[
         (lot_pref_df[restrict_col] == 6)
-        & (lot_pref_df[day_col] == "Weekday")
-        & (lot_pref_df[hour_col] >= 9)
-        & (lot_pref_df[hour_col] < 18),
+        #& (lot_pref_df[day_col] == "Weekday")
+        & (lot_pref_df[hour_col] >= 8)
+        & (lot_pref_df[hour_col] < 20),
         COST_COL,
     ] = 1.0
 
@@ -270,10 +298,17 @@ def run(configs, factors_df=None):
         factors_file = configs.get("factors_filename")
         factors_df = configs.read_output_dataframe(factors_file)
 
+    gen_restrict_file = configs.get("gen_restrict_file")
+
+    if gen_restrict_file is not None:
+        restrict_df2 = configs.read_input_dataframe(gen_restrict_file)
+    else:
+        restrict_df2 = None
+
     month_col = configs.get("month_col")
     day_col = configs.get("day_col")
     hour_col = configs.get("hour_col")
-
+    
     lot_pref_df = generate_preference(
         gen_lot_df,
         factors_df,
@@ -287,7 +322,23 @@ def run(configs, factors_df=None):
         day_col=day_col,
         hour_col=hour_col,
         restrict_df=restrict_df,
+        restrict_df2=restrict_df2,
     )
+    # Replace cost == 1 with original cost from supply_gdf
+    if 'FID_1' in lot_pref_df.columns and 'FID_1' in supply_gdf.columns:
+        merged_df = lot_pref_df.merge(
+            supply_gdf[['FID_1', 'cost']],
+            on='FID_1',
+            how='left',
+            suffixes=('', '_original')
+        )
+        merged_df['cost'] = np.where(
+            merged_df['cost'] == 1,
+            merged_df['cost_original'],
+            merged_df['cost']
+        )
+        merged_df.drop(columns='cost_original', inplace=True)
+        lot_pref_df = merged_df
 
     lot_pref_file = configs.get("preference_filename")
     configs.write_dataframe(lot_pref_df, lot_pref_file)

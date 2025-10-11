@@ -8,8 +8,6 @@ from .generate_preference import (
     COST_COL
 )
 
-print(f"COST_COL: {COST_COL}")
-
 LOT_DEMAND_COL = "lot_demand"
 GEN_LOT_DEMAND_COL = "demand"
 UTILITY_COL = "utility"
@@ -29,7 +27,7 @@ def calculate_utility(
     distance_factor=1.0,
     capacity_factor=1.0,
     scarcity_factor=1.0,
-    private_lot_factor=0.0,
+    private_lot_factor=1.0,
     cost_factor=1.0
 ):
     """Add lot-choice fraction to generators using utility choice model"""
@@ -77,23 +75,10 @@ def calculate_utility(
 
     # Weight lots by private access
     demand_df["private_lot_score"] = demand_df[PRIVATE_LOT_COL] * private_lot_factor
-
-    # demand_df["cost_score"] = (
-    #     demand_df[COST_COL] * cost_factor * (-1)
-    # )
+    
     demand_df["cost_score"] = (
-        0 * cost_factor * (-1)
+        demand_df[COST_COL] * cost_factor * (-1)
     )
-
-    # if isinstance(demand_df, dd.DataFrame):
-    #     # For Dask DataFrame
-    #     demand_df["cost_score"] = demand_df[COST_COL].map_partitions(
-    #         lambda df: df * cost_factor * (-1)
-    #     )
-    # else:
-    #     # For Pandas DataFrame
-    #     demand_df["cost_score"] = demand_df[COST_COL] * cost_factor * (-1)
-
 
     demand_df = demand_df.fillna({"cost_score": 0})
 
@@ -166,8 +151,9 @@ def redistribute_overflow(
         ]
         + datetime_cols
     ]
+
     pref_df = pref_df[
-        [gen_id_col, lot_id_col, lot_gen_id_col, LOT_DIST_COL, PRIVATE_LOT_COL]
+        [gen_id_col, lot_id_col, lot_gen_id_col, LOT_DIST_COL, PRIVATE_LOT_COL, COST_COL]
     ]
     # Determine overflow
     new_ts_df = orig_ts_df.copy()
