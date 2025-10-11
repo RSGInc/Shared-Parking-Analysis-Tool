@@ -2,6 +2,7 @@
 *.egg-info/
 __pycache__/
 
+#data
 tests/test_logs/
 tests/winooski_example/output/
 tests/winooski_restrictions/output/
@@ -9,9 +10,11 @@ test.py
 WinAveTests
 WinCityTests
 Output/base/baseoutput
+Inputs/
 Inputs/Parking Demand and Adjustments.xlsx
 Inputs/restrict_list.csv
 Inputs/sample_gis.qgz
+outputs_visuals/
 
 # Mac
 .DS_Store

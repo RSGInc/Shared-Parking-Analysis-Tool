@@ -1,5 +1,5 @@
 data_dir: data
-output_dir: output
+output_dir: output_feeV2
 factors_file: 'Parking Demand and Adjustments.xlsx'
 monthly_sheetname: Monthly   #Parking Demand and Adjustment.xlsx worksheet with monthly data
 daily_sheetname: LandUse  #Parking Demand and Adjustment.xlsx worksheet with daily data
@@ -53,43 +53,46 @@ hours:
   - 22
   - 23
 
-demand_shapefile: WinCity_Calibratedbased.shp
-supply_shapefile: WinCity_BaseCalibration_Supply.shp
+demand_shapefile: 2025_ParkingParcels.shp
+supply_shapefile: 2025_Parking_Lots.shp
 crs: 4326  # spatial coordinate reference system
 projected_crs: 5646  # projected coordinate reference system
 
-max_walk_dist: 600  # same units as projected crs
+max_walk_dist: 500  # same units as projected crs
 
 # demand shapefile attributes
 gen_size_col: SIZE
 
-# supply shapefile attributes
-lot_capacity_col: SPACE_TOT
-restrict_col: RESTRICT
+# LAND USE SHAPEFILE ATTRIBUTES
 gen_id_col: GEN_UID
-lot_gen_id_col: LOT_GEN_ID
-lot_id_col: LOT_UID
 lot_luc_col: LUC
+
+# PARKING SUPPLY Shapefile attributes
+lot_capacity_col: Avail_Spac #old: SPACE_TOT
+restrict_col: RESTRICT
+lot_gen_id_col: Map_park #old: LOT_GEN_ID
+lot_id_col: FID_1 #old: LOT_UID
 restricted_lot_landuse_codes:
   - 50
   - 51
 
 # Custom lot restriction table (optional)
 lot_restrict_file: restrict_list.csv
+gen_restrict_file: restrict_list2.csv
 
 # Hourly cost for metered lots
 metered_cost: 1.0  # TODO: not implemented yet (hardcoded)
 
 # Utility factors
 # (note from Blake: I made these up. feel free to change)
-distance_factor: 1.0
+distance_factor: 4.5
 capacity_factor: 1.0
 scarcity_factor: 1.0
 private_lot_factor: 2.5
-cost_factor: 1.0
+cost_factor: 1.5
 
-redistribute_overflow: False
-lot_flag: False
+redistribute_overflow: True
+lot_flag: True
 
 # Output files
 factors_filename: factors.csv
