@@ -168,7 +168,7 @@ The SPA Source code is stored in a GitHub repository. In order to use the SPA to
 
 The GitHub repository has the following files:
 
-<img src="./assets/media/image-20251010214517700.png"
+<img src="./assets/media/image-20251010214517700.png" />
 
 The SUPM ‘Shared_Parking’ folder should be moved to the location on the local machine where it will be called. Typically, a location near to the root C: drive or in a My Documents location is used. 
 
