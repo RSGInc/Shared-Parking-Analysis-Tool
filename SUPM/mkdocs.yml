@@ -1,4 +1,4 @@
 site_name: Shared Use Parking Model
 nav:
   - home: index.md
-  
+theme: readthedocs

@@ -20,6 +20,9 @@ outputs_visuals/
 Archive/
 source_docs/
 
+#Rendered Documentation
+SUPM/site/
+
 # Mac
 .DS_Store
 .Rproj.user
