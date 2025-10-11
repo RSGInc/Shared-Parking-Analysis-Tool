@@ -21,56 +21,6 @@ contact:
 
 
 
-[1.0 Introduction [1](#introduction)](#introduction)
-
-[1.1 Background [1](#background)](#background)
-
-[1.2 How To Use This Guide
-[1](#how-to-use-this-guide)](#how-to-use-this-guide)
-
-[2.0 Using SPA [2](#using-spa)](#using-spa)
-
-[2.1 Background Software
-[2](#background-software)](#background-software)
-
-[2.2 Download the SPA code
-[3](#download-the-spa-code)](#download-the-spa-code)
-
-[2.3 Installation of the SPA Tool
-[4](#installation-of-the-spa-tool)](#installation-of-the-spa-tool)
-
-[2.4 Input Files [6](#input-files)](#input-files)
-
-[Generators – GIS File [6](#generators-gis-file)](#generators-gis-file)
-
-[Parking Supply – GIS File
-[7](#parking-supply-gis-file)](#parking-supply-gis-file)
-
-[Parking Demand and Adjustments.xlsx
-[8](#parking-demand-and-adjustments.xlsx)](#parking-demand-and-adjustments.xlsx)
-
-[Restrict List (restrict_list.csv)
-[9](#restrict-list-restrict_list.csv)](#restrict-list-restrict_list.csv)
-
-[Configuration.YAML [9](#configuration.yaml)](#configuration.yaml)
-
-[2.5 Running the Tool [10](#running-the-tool)](#running-the-tool)
-
-[3.0 Output Data and Results
-[11](#output-data-and-results)](#output-data-and-results)
-
-[3.1 CSV outputs [11](#csv-outputs)](#csv-outputs)
-
-[3.2 Post-processing [11](#post-processing)](#post-processing)
-
-[3.3 post-processing output
-[15](#post-processing-output)](#post-processing-output)
-
-[4.0 Calibration and Refining Input Data
-[19](#calibration-and-refining-input-data)](#calibration-and-refining-input-data)
-
-[5.0 Tool Methodology [20](#tool-methodology)](#tool-methodology)
-
 
 
 # Introduction
@@ -234,18 +184,13 @@ Figure below - shows a sample of a Generator File
 The generator shapefile must have the following data fields:
 
 - Gen_ID – Unique ID associated with each generator. ***mandatory*.**
-- LUC – Land Use Code of a particular generator’s land use. This number
-  must match a land use code in the *Land Use Demand* file and
-  *Adjustment Factors* file. ***mandatory***
-- Unit – The unit in which size is measured. The unit type must match
-  the Land Use’s unit type in the *Land Use Demand* file.
+- LUC – Land Use Code of a particular generator’s land use. This number must match a land use code in the *Land Use Demand* file and *Adjustment Factors* file. ***mandatory***
+- Unit – The unit in which size is measured. The unit type must match the Land Use’s unit type in the *Land Use Demand* file.
   ***mandatory***
-- Size – The size of the land use in the units specified. For example,
-  number of housing units or the square footage of a specific
+- Size – The size of the land use in the units specified. For example, number of housing units or the square footage of a specific
   nonresidential use. ***mandatory***
 - DUType – SF single family & MF multifamily. ***mandatory***
-- DUCount – the number of households living in the structure.
-  ***mandatory***
+- DUCount – the number of households living in the structure. ***mandatory***
 - Name – Name of the parking generator. This column is not directly used in the tool and is there only to help the user identify the generator. *optional*
 - Address – Physical address of the land use. *optional*
 - ~~Long & Lat – are the longitude and latitude of the centroid of the land use.~~   ' I think the python scripts process the shapefile to determine the long and lat of the centroids.'
