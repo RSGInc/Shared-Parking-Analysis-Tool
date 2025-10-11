@@ -15,6 +15,7 @@ Inputs/Parking Demand and Adjustments.xlsx
 Inputs/restrict_list.csv
 Inputs/sample_gis.qgz
 outputs_visuals/
+Archive/
 
 # Mac
 .DS_Store
