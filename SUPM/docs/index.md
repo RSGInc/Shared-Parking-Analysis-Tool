@@ -325,7 +325,31 @@ The Excel file includes the Land Use, Monthly parking demand factors, and a Time
 
 ### Restrict List (restrict_list.csv)
 
-The restrict list is a file designed to limit the land uses who are allowed to park in specific parking areas. The CSV includes two columns of data which specifies for any specific lots, whether that demand can park there or not. The demand (GEN_UID) is attempted to be first allocated to these parking lots (LOT_UID), but is allowed to park elsewhere. But if the LOT_UID is specified in this file, then only those Generators listed will be able to be allocated there. The table shows a sample restrict file.
+The restrict list is a file designed to limit the land uses who are allowed to park in specific parking areas. 
+
+There are two XLSX that need to be used at this time. 
+
+- `restrict_list.csv` is used for the restrictions 1 through 6. 
+- `Restrict_list2.csv` is used for the restriction code 7.
+
+
+
+```
+0: No restrictions
+1: Restricted to single generator ID
+2: Commercial only
+3: Restricted to generators in lookup table
+4: Same as code 3 but only available between 9am and 6pm weekdays
+5: Metered parking. Adds cost to lot.
+6: Same as 5 but only available between 9am and 6pm weekdays
+7: Generator-specific lot access (e.g., gen 244 can only park in lot 48 and 49) .  Need to use the Restrict_list2.csv
+```
+
+
+
+Restrict code 3 restricts specific Generators (GEN_UID) to be able to park in that lot. However, the demand (the Generator) could park elsewhere.  
+
+
 
 <img src="./assets/media/image12.png"
 style="width:1.25612in;height:2.57165in"
@@ -333,24 +357,20 @@ alt="A screenshot of a computer Description automatically generated" />
 
 The Restrict Codes are used to inform which land uses can park in the specific parking lots.
 
-<img src="./assets/media/image13.png"
-style="width:5.55208in;height:2.57292in"
-alt="A computer screen with text AI-generated content may be incorrect." />
+Restrict code 7 creates a more explicit and constrained relationship which specifies which lot a generator parks in. 
+
+
+
+
 
 ### Configuration.YAML
 
-Python uses a configuration file to guide the collection of the input
-files and direct outputs to specific locations. This
-‘*Configuration.yaml*’ file is the necessary link between the data and
-the analysis. The file has several sections and areas for the user to
-input specific file names and folders for the parking analysis.
+Python uses a configuration file to guide the collection of the input files and direct outputs to specific locations. This
+‘*Configuration.yaml*’ file is the necessary link between the data and the analysis. The file has several sections and areas for the user to input specific file names and folders for the parking analysis.
 
-The file includes information on months to analyze, days of the week,
-hours of the day, etc.
+The file includes information on months to analyze, days of the week, hours of the day, etc.
 
-- *data_dir: data* \#this is the folder where the data inputs are
-  stored. These data include:
-
+- *data_dir: data* \#this is the folder where the data inputs are stored. These data include:
   - parking generation shapefile
 
   - parking supply shapefile
@@ -359,54 +379,43 @@ hours of the day, etc.
 
   - Restricted parking lot file
 
-- *output_dir: baseoutput* \#this is the name of the folder where the
-  output from the SPA will go.
-
-- *factors_file: **'Parking Demand and Adjustments.xlsx'*** \#excel file
-  with worksheets
-
-- *monthly_sheetname: Monthly* \#worksheet name with monthly parking
-  factors
-
+- *output_dir: baseoutput* \#this is the name of the folder where the output from the SPA will go.
+  
+- *factors_file: **'Parking Demand and Adjustments.xlsx'*** \#excel file with worksheets
+  
+- *monthly_sheetname: Monthly* \#worksheet name with monthly parking factors
+  
 - *daily_sheetname: LandUse* \#worksheet name with daily parking rates
 
 - *hourly_sheetname: TOD* \#worksheet name with hourly parking rates
 
-Other data is specified in the configuration file but shouldn’t need to
-be changed such as the name of the land use columns, and setting other
-variable names in the Parking Demand and Adjustments Excel file.
+Other data is specified in the configuration file but shouldn’t need to be changed such as the name of the land use columns, and setting other variable names in the Parking Demand and Adjustments Excel file.
 
-The configuration file requires the name of the specific demand (i.e.,
-Generator) file and the supply file.
+The configuration file requires the name of the specific demand (i.e., Generator) file and the supply file.
 
 - demand_shapefile: **WinCity_Calibratedbased.shp**
 
 - supply_shapefile: **WinCity_BaseCalibration_Supply.shp**
 
-Other data in the file shouldn’t need to be altered, but the YAML does
-provide flexibility on other key model parameters and inputs. Several of
-which are used in the calibration process to adjust parking rates and
-the attractiveness of certain lots.
+Other data in the file shouldn’t need to be altered, but the YAML does provide flexibility on other key model parameters and inputs. Several of which are used in the calibration process to adjust parking rates and the attractiveness of certain lots.
+
+
+
+
 
 ## Running the Tool
 
-Once the conda environment has been activated then the tool is ready for
-running. Enter the following command to run the tool:
+Once the conda environment has been activated then the tool is ready for running. Enter the following command to run the tool:
 
-- Run “*python run_model.py -c
-  tests/winooski_example/configuration.yaml*” to use the example
-  configuration. This will generate output files for use in the
-  post-processing R scripts. Note, the later part of the python code
-  points to the location of the Configuration YAML file.
+- Run `python run_model.py -c tests/winooski_example/configuration.yaml` to use the example configuration. This will generate output files for use in the post-processing R scripts. Note, the later part of the python code points to the location of the Configuration YAML file. *Note*: you may need to set the working directory to direct the path to the correct .yaml file. 
+
+
 
 # Output Data and Results
 
 ## CSV outputs
 
-The Shared Parking Analysis Tool’s Post-Processing R Scripts are
-designed to extract data from the CSV output files are created after
-running the Python script. These include: This section describes the
-format of the output files generated by the Python SPA:
+The Shared Parking Analysis Tool’s Post-Processing R Scripts are designed to extract data from the CSV output files are created after running the Python script. These include: This section describes the format of the output files generated by the Python SPA:
 
 - Demand: Demand for individual lots.
 
@@ -420,67 +429,40 @@ format of the output files generated by the Python SPA:
 
 ## Post-processing
 
-The post-process Excel visualization file will be created by running the
-R script, “*Post Process.R*” in the Post Process folder. This is the
-main file that can run all other supporting scripts to analyze the
-outputs from the SPA. Note, that required libraries will be called in
-the R script but may require installation before running the script.
-These libraries are similar to the packages that were installed during
-the building of the Shared_Parking environment in the Python setup.
+The post-process Excel visualization file will be created by running the R script, “*Post Process.R*” in the Post Process folder. This is the main file that can run all other supporting scripts to analyze the outputs from the SPA. Note, that required libraries will be called in the R script but may require installation before running the script. These libraries are similar to the packages that were installed during the building of the Shared_Parking environment in the Python setup.
 
-The supporting R scripts called by the Post Process.R script are located
-within the subfolder titled “Source” in the R project directory. The
-Source directory contains the following supporting files:
+The supporting R scripts called by the Post Process.R script are located within the subfolder titled “Source” in the R project directory. The Source directory contains the following supporting files:
 
 - *read_shapefiles.R*: Open’s shapefiles of generated parking lots.
+- *specific_gens_lots.R*: Gets demand information for one or more generators or parking lots using generator and lot ID variables.
 
-<!-- -->
+- *constraint check.R*: Generates summary space constraints on parking lots and demand.
+  
+- *counts_analysis.R*: Generates parking counts for on and off-street parking during weekdays and weekends.
+  
+- *demand_check.R*: Estimates total parking unconstrained demand versus demand in the parking model.
 
-- *specific_gens_lots.R*: Gets demand information for one or more
-  generators or parking lots using generator and lot ID variables.
-
-- *constraint check.R*: Generates summary space constraints on parking
-  lots and demand.
-
-- *counts_analysis.R*: Generates parking counts for on and off-street
-  parking during weekdays and weekends.
-
-- *demand_check.R*: Estimates total parking unconstrained demand versus
-  demand in the parking model.
-
-<span id="_Toc140436500" class="anchor"></span>Figure : post process
-step 1 - load packages
+Figure : post process step 1 - load packages
 
 <img src="./assets/media/image14.png"
 style="width:6.5in;height:1.91597in"
 alt="Text Description automatically generated" />
 
-Running the post process will require defining the project type and
-editing directory selections within the script to correctly call and
-store files. The projects available for analysis include “Winooski_city”
-and “Winooski_ave.” The directory called from for “model_dir” should
-contain the output from Python scripts used in the SPA. The directory
-called from “dir” should contain a folder titled “Outputs” for storing
-post processing results.
+Running the post process will require defining the project type and editing directory selections within the script to correctly call and store files. The projects available for analysis include “Winooski_city” and “Winooski_ave.” The directory called from for “model_dir” should contain the output from Python scripts used in the SPA. The directory called from “dir” should contain a folder titled “Outputs” for storing post processing results.
 
-<span id="_Toc140436501" class="anchor"></span>Figure : post process
-step 2 - define project & loading inputs
+Figure : post process step 2 - define project & loading inputs
 
 <img src="./assets/media/image15.png"
 style="width:6.5in;height:2.42361in"
 alt="Text Description automatically generated" />
 
-<span id="_Toc140436502" class="anchor"></span>Figure : post process
-step 2 - define project, setting directories
+Figure : post process step 2 - define project, setting directories
 
 <img src="./assets/media/image16.png"
 style="width:6.5in;height:1.82847in"
 alt="Text Description automatically generated" />
 
-Step 3 reads data outputs from the Python model and shapefile inputs
-used for the SPA model run using the “*read_shapefiles.R*” script.
-<span class="mark">The folder “Source” must be in the same directory as
-the R Project in order these scripts.</span>
+Step 3 reads data outputs from the Python model and shapefile inputs used for the SPA model run using the “*read_shapefiles.R*” script.  The folder “Source” must be in the same directory as the R Project in order these scripts.</span>
 
 Figure : post process step 3 – read data
 
@@ -488,10 +470,7 @@ Figure : post process step 3 – read data
 style="width:6.5in;height:1.55972in"
 alt="Text Description automatically generated" />
 
-Step 4 analyzes the parking data to project capacity versus demand
-stored in usable output files. Run the constraint check section to plot
-demand vs capacity for both the model and unconstrained demand given the
-SPA outputs.
+Step 4 analyzes the parking data to project capacity versus demand stored in usable output files. Run the constraint check section to plot demand vs capacity for both the model and unconstrained demand given the SPA outputs.
 
 Figure : post process step 4 – constraint check
 
@@ -499,9 +478,7 @@ Figure : post process step 4 – constraint check
 style="width:6.5in;height:2.58472in"
 alt="A screenshot of a computer Description automatically generated" />
 
-Running the script file “counts_analysis.R” will develop counts for
-weekday and weekend to project demand by hour, day, and month. Land use
-codes can be adjusted for on-street shared parking as well.
+Running the script file “counts_analysis.R” will develop counts for weekday and weekend to project demand by hour, day, and month. Land use codes can be adjusted for on-street shared parking as well.
 
 Figure : post process step 4 – counts analysis
 
@@ -509,8 +486,7 @@ Figure : post process step 4 – counts analysis
 style="width:6.5in;height:3.02847in"
 alt="Text Description automatically generated" />
 
-Running the last step will export an Excel output to the “Outputs”
-folder under the output directory.
+Running the last step will export an Excel output to the “Outputs” folder under the output directory.
 
 Figure : post process step 5 – write output
 
@@ -520,25 +496,20 @@ alt="Text Description automatically generated" />
 
 ## post-processing output
 
-Post-processing will store an Excel file titled “Visualization.XLSX” to
-the chosen directory. The file contains the following tabs:
+Post-processing will store an Excel file titled “Visualization.XLSX” to the chosen directory. The file contains the following tabs:
 
-- “Overall summaries” contains pivot tables showing high-level summaries
-  with changeable filters.
-
-- “OnStreet 3 period” shows on-street parking utilization for hours
-  8:00, 13:00, and 18:00 by street.
-
+- “Overall summaries” contains pivot tables showing high-level summaries with changeable filters.
+  
+- “OnStreet 3 period” shows on-street parking utilization for hours 8:00, 13:00, and 18:00 by street.
+  
 - “Single Street Pivot” shows parking demand and utilization parking
   over a 1-day period for a given street.
 
 - “parking_formatted” shows geographic information of parking lots.
 
-- “timeseries” contains raw data for parking utilization by street,
-  time, and land use.
+- “timeseries” contains raw data for parking utilization by street, time, and land use.
 
-The first table in the “Overall summaries” worksheet shows the following
-data points for a for a given month, day (weekday vs weekend), and hour:
+The first table in the “Overall summaries” worksheet shows the following data points for a for a given month, day (weekday vs weekend), and hour:
 
 - The total number of spaces (“Sum of SPACE_TOT”).
 
@@ -550,10 +521,7 @@ alt="Graphical user interface, table Description automatically generated" />
 
 figure 10: overall summaries output 1
 
-In contrast, the second table, “OnStreet 3 Period,” can also be filtered
-by land use category and is analyzed at a lot-specific level. This table
-includes the same analyzed variables and percent utilization for each
-lot (“Sum of PctFull”).
+In contrast, the second table, “OnStreet 3 Period,” can also be filtered by land use category and is analyzed at a lot-specific level. This table includes the same analyzed variables and percent utilization for each lot (“Sum of PctFull”).
 
 <img src="./assets/media/image22.png"
 style="width:4.95003in;height:3.35502in"
@@ -561,10 +529,7 @@ alt="Table Description automatically generated" />
 
 figure 11: overall summaries output 2
 
-The table in this worksheet shows utilization rates for each parking lot
-(“Lot_UID”) at hours 8:00, 13:00, and 16:00, organized by street. This
-also shows a grand total utilization rate for a 24-hour period. These
-can be filtered by month, day, and land use category.
+The table in this worksheet shows utilization rates for each parking lot (“Lot_UID”) at hours 8:00, 13:00, and 16:00, organized by street. This also shows a grand total utilization rate for a 24-hour period. These can be filtered by month, day, and land use category.
 
 <img src="./assets/media/image23.png"
 style="width:5.4209in;height:4.15306in"
@@ -589,65 +554,30 @@ alt="Graphical user interface, table Description automatically generated" />
 
 figure 13: single street pivot output
 
-The user should check these results for reasonableness. Do they
-generally agree with the user’s expectation? Do they agree with
-anecdotal data on this location? If not, the user should double check
-the inputs and consider if there are special cases in this area that do
-not conform well with the default demand and adjustment factors.
+The user should check these results for reasonableness. Do they generally agree with the user’s expectation? Do they agree with
+anecdotal data on this location? If not, the user should double check the inputs and consider if there are special cases in this area that do not conform well with the default demand and adjustment factors.
 
 # Calibration and Refining Input Data
 
-The SPA tool uses a generic dataset of national data from <u>Shared
-Parking</u>. It should be used as a planning tool to understand the
-effects of shared parking, both where excess capacity may exist and
-where a new generator may require more parking than is currently
-available. Like all planning data, the demand and adjustment factors
-used here are not perfect, and the user should be careful when demand is
-shown to be close to supply.
+The SPA tool uses a generic dataset of national data from <u>Shared Parking</u>. It should be used as a planning tool to understand the effects of shared parking, both where excess capacity may exist and where a new generator may require more parking than is currently available. Like all planning data, the demand and adjustment factors used here are not perfect, and the user should be careful when demand is shown to be close to supply.
 
-There are a variety of reasons a user may want to change the demand and
-adjustments factors. A user may decide to use local data for time
-adjustment factors or use a higher generation rate for a particularly
-popular generator. The available land use codes may not cover a desired
-land use type. <u>Shared Parking</u> explains its methods for data
-collection and how to collect local data.
+There are a variety of reasons a user may want to change the demand and adjustments factors. A user may decide to use local data for time adjustment factors or use a higher generation rate for a particularly popular generator. The available land use codes may not cover a desired land use type. <u>Shared Parking</u> explains its methods for data collection and how to collect local data. 
 
-A good first step is to perform field counts at the times the SPA tool
-indicates peak demand occurs. It may also be helpful to compare
-anecdotal data for particular times with what the tool’s output
-indicates. These observations may show that the tool is generally
-accurate, or over- or under-estimating peak demand. It is also possible
-that some stores are not open when the default factors are showing they
-have demand, e.g. restaurants that are not open after midnight.
+A good first step is to perform field counts at the times the SPA tool indicates peak demand occurs. It may also be helpful to compare anecdotal data for particular times with what the tool’s output indicates. These observations may show that the tool is generally accurate, or over- or under-estimating peak demand. It is also possible that some stores are not open when the default factors are showing they have demand, e.g. restaurants that are not open after midnight.
 
-If the user determines that the demand and adjustment factors need to be
-refined, the user should perform parking lot counts in accordance with
-the <u>Shared Parking</u> methodology. It may be possible to perform
-counts at only the times of highest demand and adjust the factors
-accordingly and thus avoid counting all 26 days of factors. Changing
-factors to reflect store hour hours will also help calibrate a
-particular area.
+If the user determines that the demand and adjustment factors need to be refined, the user should perform parking lot counts in accordance with the <u>Shared Parking</u> methodology. It may be possible to perform counts at only the times of highest demand and adjust the factors accordingly and thus avoid counting all 26 days of factors. Changing factors to reflect store hour hours will also help calibrate a particular area.
 
 # Tool Methodology
 
-The premise of the SPA tool is that for each hour of the analysis it
-goes through an iterative process of:
+The premise of the SPA tool is that for each hour of the analysis it goes through an iterative process of:
 
-- Estimating the parking demand generated by each of the land uses in
-  the model shapefile
+- Estimating the parking demand generated by each of the land uses in the model shapefile
+  
+- Allocates that demand based on a utility function subject to size constraints and restrictions on which land uses can part in which lots.
 
-- Allocates that demand based on a utility function subject to size
-  constraints and restrictions on which land uses can part in which
-  lots.
+The SPA tool uses the parking demand estimates for each land use from the Urban Land Institute’s <u>Shared Parking</u> guide.
 
-The SPA tool uses the parking demand estimates for each land use from
-the Urban Land Institute’s <u>Shared Parking</u> guide.
-
-The SPA tool calculates each hour of demand independently, using the
-hourly factors from Shared Parking. This aggregate approach avoids the
-need to estimate the individual parking behaviors of each individual
-vehicle in the network and rather model the overall demand at each time
-period separately.
+The SPA tool calculates each hour of demand independently, using the hourly factors from Shared Parking. This aggregate approach avoids the need to estimate the individual parking behaviors of each individual vehicle in the network and rather model the overall demand at each time period separately.
 
 The analysis considers:
 
