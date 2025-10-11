@@ -1,3 +1,5 @@
+# Python env
+.venv/
 *.pyc
 *.egg-info/
 __pycache__/
@@ -16,6 +18,7 @@ Inputs/restrict_list.csv
 Inputs/sample_gis.qgz
 outputs_visuals/
 Archive/
+source_docs/
 
 # Mac
 .DS_Store
