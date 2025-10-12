@@ -43,13 +43,13 @@ Using the extension in VisualStudio you can import the GeoJSON, navigate the map
 
     
 
-![image-20251011203814780](.assets/media/image-20251011203814780.png)
+![image-20251011203814780](../assets/media/image-20251011203814780.png)
 
 
 
 In the top right corner of the map, there is a Save button that can export to HTML.
 
-![image-20251011204331288](.assets/media/Kepler_save.png)
+![image-20251011204331288](../assets/media/Kepler_save.png)
 
 
 
