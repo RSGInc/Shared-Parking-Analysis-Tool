@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Analyzing the Data - Shared Use Parking Model</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Analyzing the Data";
+        var mkdocs_page_input_path = "postprocess.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Shared Use Parking Model
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">home</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Shared Use Parking Model</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Analyzing the Data</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="analyzing-the-data">Analyzing the Data<a class="headerlink" href="#analyzing-the-data" title="Permanent link">#</a></h1>
+<h2 id="geojsons-keplergl">GeoJSONs &amp; Kepler.GL<a class="headerlink" href="#geojsons-keplergl" title="Permanent link">#</a></h2>
+<p>After a complete SUPM run several opportunities exist for post processing to analyze the results. </p>
+<p>The SUPM produces a <code>timeseries.csv</code> file that includes a long file with all lots and specific hour of the year and various data, such as percent occupied. </p>
+<p>A python file can convert the data in the <code>timeseries.csv</code> into a GeoJSON with the shapefile for the parking lots (parking supply). </p>
+<p>Run the <code>timeseries_to_geojson.py</code> script. In the script point to key files:</p>
+<ul>
+<li>Timeseries CSV </li>
+<li>Parking Lots shapefile. </li>
+</ul>
+<p>The python script creates the GeoJSON file. The GeoJSON can then be visualized in various GIS services and tools. </p>
+<p>The one recommended is the Kepler.GL service. The Kepler.GL is an open source visualizer for large datasets. </p>
+<ul>
+<li>Website for Kepler.GL  https://kepler.gl/ </li>
+</ul>
+<p>The method that has been used successfully uses a Kepler.GL Extension in Visual Studio that reads in the GeoJSON to create an interactive map that can be saved as an HTML. The HTML is a convenient way to share the results from the SUPM in a form that can be visualized to show parking demand across times of the day, weekdays and weekends, and months of the year. </p>
+<p>The Extension is Geo Data Viewer in VisualStudio</p>
+<p><img alt="image-20251011202904727" src="C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\image-20251011202904727.png" /></p>
+<p>Using the extension in VisualStudio you can import the GeoJSON, navigate the maps, set the conditions (filters and queries), and export as an HTML file.</p>
+<ul>
+<li>
+<p>Layers:</p>
+</li>
+<li>
+<p>select the polygon</p>
+</li>
+<li>
+<p>select fill color and then select the field to analyze. The 'frac_full' is the percentage of spaces occupied. </p>
+</li>
+<li>
+<h6 id="filters">Filters:<a class="headerlink" href="#filters" title="Permanent link">#</a></h6>
+<ul>
+<li>Select the hour (the time of the data)</li>
+<li>Day (select weekday or weekend)</li>
+<li>Month (select the month of the year)</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image-20251011203814780" src="C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\image-20251011203814780.png" /></p>
+<p>In the top right corner of the map, there is a Save button that can export to HTML.</p>
+<p><img alt="image-20251011204331288" src="C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\Kepler_save" /></p>
+<p>The HTML file includes the filter that was selected and then allows the user to interact with the data. </p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

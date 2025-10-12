@@ -86,36 +86,6 @@ contact:     </p>
 <p><em>RSG (Headquarters)<br /></em>55 Railroad Row<br /><em>White River Junction, VT 05001<br /></em>(802) 295-4999<br />
 <em>www.rsginc.com</em></p>
 <p><em>© 2025 RSG</em></p>
-<p><a href="#introduction">1.0 Introduction [1](#introduction)</a></p>
-<p><a href="#background">1.1 Background [1](#background)</a></p>
-<p><a href="#how-to-use-this-guide">1.2 How To Use This Guide
-[1](#how-to-use-this-guide)</a></p>
-<p><a href="#using-spa">2.0 Using SPA [2](#using-spa)</a></p>
-<p><a href="#background-software">2.1 Background Software
-[2](#background-software)</a></p>
-<p><a href="#download-the-spa-code">2.2 Download the SPA code
-[3](#download-the-spa-code)</a></p>
-<p><a href="#installation-of-the-spa-tool">2.3 Installation of the SPA Tool
-[4](#installation-of-the-spa-tool)</a></p>
-<p><a href="#input-files">2.4 Input Files [6](#input-files)</a></p>
-<p><a href="#generators-gis-file">Generators – GIS File [6](#generators-gis-file)</a></p>
-<p><a href="#parking-supply-gis-file">Parking Supply – GIS File
-[7](#parking-supply-gis-file)</a></p>
-<p><a href="#parking-demand-and-adjustments.xlsx">Parking Demand and Adjustments.xlsx
-[8](#parking-demand-and-adjustments.xlsx)</a></p>
-<p><a href="#restrict-list-restrict_list.csv">Restrict List (restrict_list.csv)
-[9](#restrict-list-restrict_list.csv)</a></p>
-<p><a href="#configuration.yaml">Configuration.YAML [9](#configuration.yaml)</a></p>
-<p><a href="#running-the-tool">2.5 Running the Tool [10](#running-the-tool)</a></p>
-<p><a href="#output-data-and-results">3.0 Output Data and Results
-[11](#output-data-and-results)</a></p>
-<p><a href="#csv-outputs">3.1 CSV outputs [11](#csv-outputs)</a></p>
-<p><a href="#post-processing">3.2 Post-processing [11](#post-processing)</a></p>
-<p><a href="#post-processing-output">3.3 post-processing output
-[15](#post-processing-output)</a></p>
-<p><a href="#calibration-and-refining-input-data">4.0 Calibration and Refining Input Data
-[19](#calibration-and-refining-input-data)</a></p>
-<p><a href="#tool-methodology">5.0 Tool Methodology [20](#tool-methodology)</a></p>
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h1>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">#</a></h2>
 <p>This user guide provides instructions for the Shared Parking Analysis (SPA) tool developed by the Chittenden County Regional Planning Commission (CCRPC) with support from RSG. The SPA tool models shared parking demand for specific geographic areas based on land use and adjustment factors by month, day of week, and time of day.</p>
@@ -280,18 +250,13 @@ alt="Anaconda Prompt" /></p>
 <p>The generator shapefile must have the following data fields:</p>
 <ul>
 <li>Gen_ID – Unique ID associated with each generator. <strong><em>mandatory</em>.</strong></li>
-<li>LUC – Land Use Code of a particular generator’s land use. This number
-  must match a land use code in the <em>Land Use Demand</em> file and
-  <em>Adjustment Factors</em> file. <strong><em>mandatory</em></strong></li>
-<li>Unit – The unit in which size is measured. The unit type must match
-  the Land Use’s unit type in the <em>Land Use Demand</em> file.
+<li>LUC – Land Use Code of a particular generator’s land use. This number must match a land use code in the <em>Land Use Demand</em> file and <em>Adjustment Factors</em> file. <strong><em>mandatory</em></strong></li>
+<li>Unit – The unit in which size is measured. The unit type must match the Land Use’s unit type in the <em>Land Use Demand</em> file.
   <strong><em>mandatory</em></strong></li>
-<li>Size – The size of the land use in the units specified. For example,
-  number of housing units or the square footage of a specific
+<li>Size – The size of the land use in the units specified. For example, number of housing units or the square footage of a specific
   nonresidential use. <strong><em>mandatory</em></strong></li>
 <li>DUType – SF single family &amp; MF multifamily. <strong><em>mandatory</em></strong></li>
-<li>DUCount – the number of households living in the structure.
-  <strong><em>mandatory</em></strong></li>
+<li>DUCount – the number of households living in the structure. <strong><em>mandatory</em></strong></li>
 <li>Name – Name of the parking generator. This column is not directly used in the tool and is there only to help the user identify the generator. <em>optional</em></li>
 <li>Address – Physical address of the land use. <em>optional</em></li>
 <li>~~Long &amp; Lat – are the longitude and latitude of the centroid of the land use.~~   ' I think the python scripts process the shapefile to determine the long and lat of the centroids.'</li>
@@ -665,5 +630,5 @@ anecdotal data on this location? If not, the user should double check the inputs
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-10-11 02:43:10.866406+00:00
+Build Date UTC : 2025-10-12 00:49:06.127583+00:00
 -->
