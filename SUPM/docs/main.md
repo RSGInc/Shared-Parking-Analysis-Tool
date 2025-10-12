@@ -48,7 +48,7 @@ the SUPM tool. These include the following:
   allows users to create isolated environments to run different projects
   with specific package versions and configurations.
 
-> <img src="./assets/media/image5.png"
+> <img src="../assets/media/image5.png"
 > style="width:4.8732in;height:2.20633in"
 > alt="A screenshot of a computer Description automatically generated" />
 
@@ -76,7 +76,7 @@ the SUPM tool. These include the following:
   run, and debug R code while offering features like code editing, data
   visualization, and package management.
 
-> <img src="./assets/media/image6.png"
+> <img src="../assets/media/image6.png"
 > style="width:4.8732in;height:2.97379in"
 > alt="A screenshot of a computer Description automatically generated" />
 
@@ -86,7 +86,7 @@ The SUPM Source code is stored in a GitHub repository. In order to use the SUPM 
 
 The GitHub repository has the following files:
 
-<img src="./assets/media/image-20251010214517700.png" />
+<img src="../assets/media/image-20251010214517700.png" />
 
 The SUPM ‘Shared_Parking’ folder should be moved to the location on the local machine where it will be called. Typically, a location near to the root C: drive or in a My Documents location is used. 
 
@@ -102,7 +102,7 @@ Use the Start menu to find the Anaconda Prompt. A command window opens. Using co
 
 <span id="_Ref112935956" class="anchor"></span>Figure : Anaconda Prompt
 
-<img src="./assets/media/image8.png"
+<img src="../assets/media/image8.png"
 style="width:2.64986in;height:2.59967in"
 alt="A screenshot of a computer Description automatically generated" />
 
@@ -117,7 +117,7 @@ install the Shared_Parking environment.
 
 Figure : Conda Environment Install
 
-<img src="./assets/media/image9.png"
+<img src="../assets/media/image9.png"
 style="width:6.5in;height:1.29236in"
 alt="A screen shot of a computer Description automatically generated" />
 
@@ -126,7 +126,7 @@ the Python environment so that the analysis can be completed.
 
 Figure : Conda Python Environment (after)
 
-<img src="./assets/media/image10.png"
+<img src="../assets/media/image10.png"
 style="width:5in;height:2.5in"
 alt="Anaconda Prompt" />
 
@@ -213,7 +213,7 @@ This Excel file contains parking demand ratios for the land uses in the *Generat
 
 Sample data is shown below:
 
-<img src="./assets/media/image11.png"
+<img src="../assets/media/image11.png"
 style="width:6.5in;height:1.06111in"
 alt="A white background with black text Description automatically generated" />
 
@@ -249,7 +249,7 @@ Restrict code 3 restricts specific Generators (GEN_UID) to be able to park in th
 
 
 
-<img src="./assets/media/image12.png"
+<img src="../assets/media/image12.png"
 style="width:1.25612in;height:2.57165in"
 alt="A screenshot of a computer Description automatically generated" />
 
@@ -374,7 +374,7 @@ The supporting R scripts called by the Post Process.R script are located within 
 
 Figure : post process step 1 - load packages
 
-<img src="./assets/media/image14.png"
+<img src="../assets/media/image14.png"
 style="width:6.5in;height:1.91597in"
 alt="Text Description automatically generated" />
 
@@ -382,13 +382,13 @@ Running the post process will require defining the project type and editing dire
 
 Figure : post process step 2 - define project & loading inputs
 
-<img src="./assets/media/image15.png"
+<img src="../assets/media/image15.png"
 style="width:6.5in;height:2.42361in"
 alt="Text Description automatically generated" />
 
 Figure : post process step 2 - define project, setting directories
 
-<img src="./assets/media/image16.png"
+<img src="../assets/media/image16.png"
 style="width:6.5in;height:1.82847in"
 alt="Text Description automatically generated" />
 
@@ -396,7 +396,7 @@ Step 3 reads data outputs from the Python model and shapefile inputs used for th
 
 Figure : post process step 3 – read data
 
-<img src="./assets/media/image17.png"
+<img src="../assets/media/image17.png"
 style="width:6.5in;height:1.55972in"
 alt="Text Description automatically generated" />
 
@@ -404,7 +404,7 @@ Step 4 analyzes the parking data to project capacity versus demand stored in usa
 
 Figure : post process step 4 – constraint check
 
-<img src="./assets/media/image18.png"
+<img src="../assets/media/image18.png"
 style="width:6.5in;height:2.58472in"
 alt="A screenshot of a computer Description automatically generated" />
 
@@ -412,7 +412,7 @@ Running the script file “counts_analysis.R” will develop counts for weekday 
 
 Figure : post process step 4 – counts analysis
 
-<img src="./assets/media/image19.png"
+<img src="../assets/media/image19.png"
 style="width:6.5in;height:3.02847in"
 alt="Text Description automatically generated" />
 
@@ -420,7 +420,7 @@ Running the last step will export an Excel output to the “Outputs” folder un
 
 Figure : post process step 5 – write output
 
-<img src="./assets/media/image20.png"
+<img src="../assets/media/image20.png"
 style="width:6.5in;height:2.16328in"
 alt="Text Description automatically generated" />
 
@@ -445,7 +445,7 @@ The first table in the “Overall summaries” worksheet shows the following dat
 
 - Total utilized spaces by land use type (“Sum of demand”).
 
-<img src="./assets/media/image21.png"
+<img src="../assets/media/image21.png"
 style="width:4.00744in;height:2.11692in"
 alt="Graphical user interface, table Description automatically generated" />
 
@@ -453,7 +453,7 @@ figure 10: overall summaries output 1
 
 In contrast, the second table, “OnStreet 3 Period,” can also be filtered by land use category and is analyzed at a lot-specific level. This table includes the same analyzed variables and percent utilization for each lot (“Sum of PctFull”).
 
-<img src="./assets/media/image22.png"
+<img src="../assets/media/image22.png"
 style="width:4.95003in;height:3.35502in"
 alt="Table Description automatically generated" />
 
@@ -461,7 +461,7 @@ figure 11: overall summaries output 2
 
 The table in this worksheet shows utilization rates for each parking lot (“Lot_UID”) at hours 8:00, 13:00, and 16:00, organized by street. This also shows a grand total utilization rate for a 24-hour period. These can be filtered by month, day, and land use category.
 
-<img src="./assets/media/image23.png"
+<img src="../assets/media/image23.png"
 style="width:5.4209in;height:4.15306in"
 alt="Table Description automatically generated" />
 
@@ -478,7 +478,7 @@ by hours 0:00 and 6:00-23:00. The table includes:
 
 These observations can be filtered by month, day, and street.
 
-<img src="./assets/media/image24.png"
+<img src="../assets/media/image24.png"
 style="width:7.08543in;height:3.10694in"
 alt="Graphical user interface, table Description automatically generated" />
 
