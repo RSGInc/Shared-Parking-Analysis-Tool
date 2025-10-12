@@ -25,8 +25,7 @@ The method that has been used successfully uses a Kepler.GL Extension in Visual 
 
 The Extension is Geo Data Viewer in VisualStudio
 
-![image-20251011202904727](C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\image-20251011202904727.png)
-
+![image-20251011202904727](.assets/media/image-20251011202904727.png)
 
 
 Using the extension in VisualStudio you can import the GeoJSON, navigate the maps, set the conditions (filters and queries), and export as an HTML file.
@@ -44,13 +43,13 @@ Using the extension in VisualStudio you can import the GeoJSON, navigate the map
 
     
 
-![image-20251011203814780](C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\image-20251011203814780.png)
+![image-20251011203814780](.assets/media/image-20251011203814780.png)
 
 
 
 In the top right corner of the map, there is a Save button that can export to HTML.
 
-![image-20251011204331288](C:\Github\Shared-Parking-Analysis-Tool\docs\assets\media\Kepler_save)
+![image-20251011204331288](.assets/media/Kepler_save.png)
 
 
 
