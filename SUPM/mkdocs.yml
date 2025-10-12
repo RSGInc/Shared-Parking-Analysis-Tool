@@ -1,7 +1,7 @@
 site_name: Shared Use Parking Model
 nav:
-  - home: index.md
-  - Analyze: postprocess.md
+  - index.md
+  - postprocess.md
 theme: readthedocs
 markdown_extensions:
   - toc:
