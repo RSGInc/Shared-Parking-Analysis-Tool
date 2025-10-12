@@ -42,11 +42,11 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#background">Background</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-guide">How To Use This Guide</a>
-    </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="postprocess/">Analyze</a>
                 </li>
               </ul>
       </div>
@@ -72,7 +72,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p><strong>Shared Parking Analysis Tool</strong></p>
+                <h1 id="shared-parking-analysis-tool"><strong>Shared Parking Analysis Tool</strong><a class="headerlink" href="#shared-parking-analysis-tool" title="Permanent link">#</a></h1>
 <p>Shared Use Parking Model (SUPM) </p>
 
 <p>V1: 2023</p>
@@ -88,20 +88,20 @@ contact:     </p>
 <p><em>© 2025 RSG</em></p>
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h1>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">#</a></h2>
-<p>This user guide provides instructions for the Shared Parking Analysis (SPA) tool developed by the Chittenden County Regional Planning Commission (CCRPC) with support from RSG. The SPA tool models shared parking demand for specific geographic areas based on land use and adjustment factors by month, day of week, and time of day.</p>
-<p>The SPA uses parking demand factors from <u>Shared Parking, Third Edition</u> by the Urban Land Institute[^1] (ULI) are incorporated by
+<p>This user guide provides instructions for the Shared Use Parking Model (SUPM) tool developed by the Chittenden County Regional Planning Commission (CCRPC) with support from RSG. The SUPM tool models shared parking demand for specific geographic areas based on land use and adjustment factors by month, day of week, and time of day.</p>
+<p>The SUPM uses parking demand factors from <u>Shared Parking, Third Edition</u> by the Urban Land Institute[^1] (ULI) are incorporated by
 default, although the tool is flexible to accept user specific inputs along with other parking demand factors. Users are expected to have purchased the data used in the model. This model provides a new mechanism to use the parking rates either from the ULI data or other locally collected data. </p>
-<p>The SPA uses open-source software in both Python and R software languages complemented by any GIS program that can generate a Shapefile with latitude and longitude location data for both the source of parking demand (i.e., land uses) and the parking lots (parking supply). </p>
-<p>The SPA is a unique and powerful tool that expands the methodology developed by the ULI. Rather than the typical ULI Shared Parking analysis as a many demand to one lot analysis, The SPA tool evaluates multiple parking demands across multiple possible parking lots.</p>
+<p>The SUPM uses open-source software in both Python and R software languages complemented by any GIS program that can generate a Shapefile with latitude and longitude location data for both the source of parking demand (i.e., land uses) and the parking lots (parking supply). </p>
+<p>The SUPM is a unique and powerful tool that expands the methodology developed by the ULI. Rather than the typical ULI Shared Parking analysis as a many demand to one lot analysis, The SUPM tool evaluates multiple parking demands across multiple possible parking lots.</p>
 <h2 id="how-to-use-this-guide">How To Use This Guide<a class="headerlink" href="#how-to-use-this-guide" title="Permanent link">#</a></h2>
-<p>This guide sets out the process for developing the inputs for the SPA, installing and running the SPA tool, and using the post process visualization summary in Excel.</p>
+<p>This guide sets out the process for developing the inputs for the SUPM, installing and running the SUPM tool, and using the post process visualization summary in Excel.</p>
 <p>This guide provides chapters on:</p>
 <ul>
 <li>
-<p>Preparing SPA inputs</p>
+<p>Preparing SUPM inputs</p>
 </li>
 <li>
-<p>Running the SPA tool</p>
+<p>Running the SUPM tool</p>
 </li>
 <li>
 <p>Analyzing the results</p>
@@ -120,7 +120,7 @@ default, although the tool is flexible to accept user specific inputs along with
 <p>This chapter sets out the process for installing the necessary software to run the SUPM.</p>
 <h2 id="background-software">Background Software<a class="headerlink" href="#background-software" title="Permanent link">#</a></h2>
 <p>Several pieces of software are necessary to develop the inputs and run
-the SPA tool. These include the following:</p>
+the SUPM tool. These include the following:</p>
 <ul>
 <li><strong>conda via <a href="https://www.anaconda.com/products/individual">Anaconda</a> or <a href="https:/.conda.io/en/latest/miniconda.html">Miniconda</a></strong>:
   Conda is an open-source package management and environment management
@@ -163,13 +163,13 @@ style="width:4.8732in;height:2.97379in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 </blockquote>
 <h2 id="download-the-supm-code">Download the SUPM code<a class="headerlink" href="#download-the-supm-code" title="Permanent link">#</a></h2>
-<p>The SPA Source code is stored in a GitHub repository. In order to use the SPA tool the user is required to download the code by cloning the repository or downloading the zip file of the repository from GitHub.</p>
+<p>The SUPM Source code is stored in a GitHub repository. In order to use the SUPM tool the user is required to download the code by cloning the repository or downloading the zip file of the repository from GitHub.</p>
 <p>The GitHub repository has the following files:</p>
 <p><img src="./assets/media/image-20251010214517700.png" /></p>
 <p>The SUPM ‘Shared_Parking’ folder should be moved to the location on the local machine where it will be called. Typically, a location near to the root C: drive or in a My Documents location is used. </p>
 <p>A typical SUMP run will produce a few hundred MB's of data. </p>
 <h2 id="installation-of-the-supm-tool">Installation of the SUPM Tool<a class="headerlink" href="#installation-of-the-supm-tool" title="Permanent link">#</a></h2>
-<p>The installation of the SPA tool requires the use of setting up a python environment using the Anaconda python interface.</p>
+<p>The installation of the SUPM tool requires the use of setting up a python environment using the Anaconda python interface.</p>
 <p>Use the Start menu to find the Anaconda Prompt. A command window opens. Using commands you need to navigate to the shared_parking folder.</p>
 <p><span id="_Ref112935956" class="anchor"></span>Figure : Anaconda Prompt</p>
 <p><img src="./assets/media/image8.png"
@@ -207,66 +207,37 @@ alt="Anaconda Prompt" /></p>
 </li>
 </ul>
 <h3 id="generators-ie-land-uses-gis-file">Generators (i.e., Land Uses) – GIS File<a class="headerlink" href="#generators-ie-land-uses-gis-file" title="Permanent link">#</a></h3>
-<p>The parking generator data are spatial datasets that are used to specify the land uses which are associated with a level of parking demand. The tool requires GIS shapefiles that include the specific land uses and the land use characteristics for any scenarios to be tested in the SPA tool. The shapefile is created in a GIS program (e.g., ArcGIS).</p>
+<p>The parking generator data are spatial datasets that are used to specify the land uses which are associated with a level of parking demand. The tool requires GIS shapefiles that include the specific land uses and the land use characteristics for any scenarios to be tested in the SUPM tool. The shapefile is created in a GIS program (e.g., ArcGIS).</p>
 <p>Figure below - shows a sample of a Generator File</p>
 <table>
 <thead>
 <tr>
-<th>GEN_NAME</th>
-<th>GEN_ADDR</th>
 <th>GEN_UID</th>
-<th>GEN_LON</th>
-<th>GEN_LAT</th>
-<th>NAICS</th>
-<th>NAICS_DESC</th>
-<th>LAND_USE</th>
 <th>LUC</th>
-<th>TYPE</th>
 <th>UNIT</th>
-<th>SIZE</th>
+<th>Size</th>
 <th>DUTYPE</th>
-<th>DUCOUNT</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>BAKER'S DOZEN INC</strong></td>
-<td><strong>70 Roosevelt Hwy Ste 2</strong></td>
-<td><strong>100</strong></td>
-<td><strong>-73.1816388468</strong></td>
-<td><strong>44.5032888286</strong></td>
-<td><strong>31</strong></td>
-<td><strong>Manufacturing</strong></td>
-<td><strong>Industrial</strong></td>
-<td><strong>60</strong></td>
-<td><strong>Industrial</strong></td>
-<td><strong>ksf GLA</strong></td>
-<td><strong>6.756</strong></td>
-<td></td>
-<td><strong>0</strong></td>
+<td>157</td>
+<td>51</td>
+<td>units</td>
+<td>101</td>
+<td>MF</td>
 </tr>
 </tbody>
 </table>
 <p>The generator shapefile must have the following data fields:</p>
 <ul>
-<li>Gen_ID – Unique ID associated with each generator. <strong><em>mandatory</em>.</strong></li>
+<li>GEN_UID – Unique ID associated with each generator. <strong><em>mandatory</em>.</strong></li>
 <li>LUC – Land Use Code of a particular generator’s land use. This number must match a land use code in the <em>Land Use Demand</em> file and <em>Adjustment Factors</em> file. <strong><em>mandatory</em></strong></li>
-<li>Unit – The unit in which size is measured. The unit type must match the Land Use’s unit type in the <em>Land Use Demand</em> file.
-  <strong><em>mandatory</em></strong></li>
-<li>Size – The size of the land use in the units specified. For example, number of housing units or the square footage of a specific
-  nonresidential use. <strong><em>mandatory</em></strong></li>
+<li>UNIT– The unit in which size is measured. The unit type must match the Land Use’s unit type in the <em>Land Use Demand</em> file. For residential uses it is often "units" or nonresidential it is "ksf GLA" <strong><em>mandatory</em></strong></li>
+<li>Size – The size of the land use in the units specified. For example, number of housing units or the square footage (in 1,000 sq ft GLA) of a specific nonresidential use. <strong><em>mandatory</em></strong></li>
 <li>DUType – SF single family &amp; MF multifamily. <strong><em>mandatory</em></strong></li>
-<li>DUCount – the number of households living in the structure. <strong><em>mandatory</em></strong></li>
-<li>Name – Name of the parking generator. This column is not directly used in the tool and is there only to help the user identify the generator. <em>optional</em></li>
-<li>Address – Physical address of the land use. <em>optional</em></li>
-<li>~~Long &amp; Lat – are the longitude and latitude of the centroid of the land use.~~   ' I think the python scripts process the shapefile to determine the long and lat of the centroids.'</li>
-<li>NAICS – code for distinguishing the land use that generates parking demand. This code and the description are useful for the user to select the most appropriate land use code for aligning the land use to the Shared Parking methodology. <em>optional</em></li>
-<li>NAICS Desc – the description for the NAICS code. <em>optional</em></li>
-<li>Land Use – general description of the land use, either zoning, or some
-  other local definition. <em>optional</em></li>
-<li>Type – Description of the type of land use. Similar, if not identical
-  to, the Land Use field. <em>optional</em></li>
 </ul>
+<p>Other fields are application specific. </p>
 <h3 id="parking-supply-gis-file">Parking Supply – GIS File<a class="headerlink" href="#parking-supply-gis-file" title="Permanent link">#</a></h3>
 <p>The parking supply data are spatial datasets that are used to specify the characteristics of the parking lots. The tool requires GIS
 shapefiles that includes information pertaining to the parking lot, who may have access to the lot, and other aspects. The shapefile is created in a GIS program.</p>
@@ -274,17 +245,13 @@ shapefiles that includes information pertaining to the parking lot, who may have
 <table>
 <thead>
 <tr>
-<th>LOT_NAME</th>
-<th>SPACE_TOT</th>
-<th>LOT_UID</th>
-<th>LOT_LON</th>
-<th>LOT_LAT</th>
+<th>NAME</th>
+<th>Avail_Space</th>
+<th>FID_1</th>
+<th>Cost</th>
 <th>RESTRICT</th>
-<th>LOT_GEN_ID</th>
-<th>Shape_Leng</th>
-<th>Shape_Area</th>
-<th>NOTES</th>
-<th>Category</th>
+<th>Map_park</th>
+<th>Park_Type</th>
 <th>Street</th>
 </tr>
 </thead>
@@ -293,34 +260,23 @@ shapefiles that includes information pertaining to the parking lot, who may have
 <td>Lapointe Street</td>
 <td>21</td>
 <td>1</td>
-<td>-73.1746875862</td>
-<td>44.4972150788</td>
-<td>0</td>
-<td>0</td>
-<td>407.050748091</td>
-<td>611.072401597</td>
-<td></td>
-<td>On Street</td>
+<td>1</td>
+<td>3</td>
+<td>158</td>
+<td>Surface</td>
 <td>Lapointe St</td>
 </tr>
 </tbody>
 </table>
 <p>The parking supply shapefile has the following data fields:</p>
 <ul>
-<li>Lot_UID - Unique ID associated with each generator. <strong><em>mandatory</em></strong></li>
-<li><strong>Space_Tot</strong> – the number of parking spaces in the parking lot.
-  <strong><em>mandatory</em></strong></li>
-<li>Restrict – this code specifies who can park in the parking spaces.
-  <strong><em>mandatory</em></strong></li>
-<li>~~Long &amp; Lat – are the longitude and latitude of the centroid of the~~
-  ~~parking supply. <strong><em>mandatory</em></strong>~~</li>
-<li>Name – Name of the parking location. <em>optional</em></li>
-<li>Lot_Gen_ID: if there is a specific land use that it is connected with.</li>
-<li>Shape_length – information on the parking polygon. <em>optional</em></li>
-<li>Shape_area – information on the parking polygon. <em>optional</em></li>
-<li>Category – on-street, off-street, residential, etc. <em>optional</em></li>
-<li>Street – the name of the street it is most closely associated with.
-  <em>optional</em></li>
+<li>Name – Name of the parking location. <strong><em>optional</em></strong></li>
+<li>FID_1 - Unique ID associated with each generator. <strong><em>mandatory</em></strong></li>
+<li>Avail_Space – the number of parking spaces in the parking lot. <strong><em>mandatory</em></strong></li>
+<li>Restrict – this code specifies who can park in the parking spaces. Between 0 and 7.  <strong><em>mandatory</em></strong></li>
+<li>Cost - the cost used in the utility function. <strong><em>mandatory</em></strong></li>
+<li>Park_Type - application specific type of parking. <strong><em>optional</em></strong></li>
+<li>Street - application specific name or location of parking. <strong><em>optional</em></strong></li>
 </ul>
 <h3 id="parking-demand-and-adjustmentsxlsx">Parking Demand and Adjustments.xlsx<a class="headerlink" href="#parking-demand-and-adjustmentsxlsx" title="Permanent link">#</a></h3>
 <p>This Excel file contains parking demand ratios for the land uses in the <em>Generators</em> folder. The SUPM tool uses demand factors and adjustments from the second edition of <u>Shared Parking</u>, but different data can be used as long as it conforms to the same format. For example, if any local data is collected, the parking rates can be adjusted in this Excel file to reflect local conditions. The Parking Demand and Adjustment file includes all hours, months, and seasons of the year. The following fields are used within the Excel file to define the parking generation demand for the land uses.</p>
@@ -371,8 +327,7 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 <p>The Restrict Codes are used to inform which land uses can park in the specific parking lots.</p>
 <p>Restrict code 7 creates a more explicit and constrained relationship which specifies which lot a generator parks in. </p>
 <h3 id="configurationyaml">Configuration.YAML<a class="headerlink" href="#configurationyaml" title="Permanent link">#</a></h3>
-<p>Python uses a configuration file to guide the collection of the input files and direct outputs to specific locations. This
-‘<em>Configuration.yaml</em>’ file is the necessary link between the data and the analysis. The file has several sections and areas for the user to input specific file names and folders for the parking analysis.</p>
+<p>Python uses a configuration file to guide the collection of the input files and direct outputs to specific locations. This <em>Configuration.yaml</em>’ file is the necessary link between the data and the analysis. The file has several sections and areas for the user to input specific file names and folders for the parking analysis.</p>
 <p>The file includes information on months to analyze, days of the week, hours of the day, etc.</p>
 <ul>
 <li><em>data_dir: data</em> #this is the folder where the data inputs are stored. These data include:</li>
@@ -389,7 +344,7 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 <p>Restricted parking lot file</p>
 </li>
 <li>
-<p><em>output_dir: baseoutput</em> #this is the name of the folder where the output from the SPA will go.</p>
+<p><em>output_dir: baseoutput</em> #this is the name of the folder where the output from the SUPM will go.</p>
 </li>
 <li>
 <p><em>factors_file: </em><em>'Parking Demand and Adjustments.xlsx'</em>** #excel file with worksheets</p>
@@ -405,7 +360,14 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 </li>
 </ul>
 <p>Other data is specified in the configuration file but shouldn’t need to be changed such as the name of the land use columns, and setting other variable names in the Parking Demand and Adjustments Excel file.</p>
-<p>The configuration file requires the name of the specific demand (i.e., Generator) file and the supply file.</p>
+<pre><code>- Land use code Column: LUC
+- User_col: User
+- month_col: Month
+- day_col: Day
+- hour_col: Hour
+- typical_str: Typical
+</code></pre>
+<p>The configuration file requires the name of the specific demand (i.e., Generator) file and the supply file. These files need to be in the "data_dir" folder.</p>
 <ul>
 <li>
 <p>demand_shapefile: <strong>WinCity_Calibratedbased.shp</strong></p>
@@ -415,6 +377,24 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 </li>
 </ul>
 <p>Other data in the file shouldn’t need to be altered, but the YAML does provide flexibility on other key model parameters and inputs. Several of which are used in the calibration process to adjust parking rates and the attractiveness of certain lots.</p>
+<h4 id="utility-function-factors">Utility Function Factors<a class="headerlink" href="#utility-function-factors" title="Permanent link">#</a></h4>
+<p>The SUPM uses a Utility function to assign the parking demand of the land uses to the various potential lots. the function uses these parameters and the coefficients assigned in the Configuration.yaml file. </p>
+<ul>
+<li>distance_factor: 4.5</li>
+<li>capacity_factor: 1.0</li>
+<li>scarcity_factor: 1.0</li>
+<li>private_lot_factor: 2.5</li>
+<li>cost_factor: 1.5</li>
+</ul>
+<h4 id="other-functions-in-config">Other Functions in Config<a class="headerlink" href="#other-functions-in-config" title="Permanent link">#</a></h4>
+<p>The SUPM can work to re-allocate demand when it exceeds the capacity of a parking lot. Set the parameter to "True" or "False" if you will allow the demand to exceed certain parking lots capacity. It may be helpful to initially use the "False" setting when using the model, but note that some parking demand will be truncated and show up anywhere. </p>
+<ul>
+<li>redistribute_overflow: True</li>
+</ul>
+<p>The Flagging capability is beneficial when a large area is being modeled. It can be used to specify in the Parking Supply file, the field, "flag" = "1" to include and "0" to exclude.</p>
+<ul>
+<li>lot_flag: True</li>
+</ul>
 <h2 id="running-the-tool">Running the Tool<a class="headerlink" href="#running-the-tool" title="Permanent link">#</a></h2>
 <p>Once the conda environment has been activated then the tool is ready for running. Enter the following command to run the tool:</p>
 <ul>
@@ -422,7 +402,7 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 </ul>
 <h1 id="output-data-and-results">Output Data and Results<a class="headerlink" href="#output-data-and-results" title="Permanent link">#</a></h1>
 <h2 id="csv-outputs">CSV outputs<a class="headerlink" href="#csv-outputs" title="Permanent link">#</a></h2>
-<p>The Shared Parking Analysis Tool’s Post-Processing R Scripts are designed to extract data from the CSV output files are created after running the Python script. These include: This section describes the format of the output files generated by the Python SPA:</p>
+<p>The Shared Parking Analysis Tool’s Post-Processing R Scripts are designed to extract data from the CSV output files are created after running the Python script. These include: This section describes the format of the output files generated by the Python SUPM:</p>
 <ul>
 <li>
 <p>Demand: Demand for individual lots.</p>
@@ -441,7 +421,7 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 </li>
 </ul>
 <h2 id="post-processing">Post-processing<a class="headerlink" href="#post-processing" title="Permanent link">#</a></h2>
-<p>The post-process Excel visualization file will be created by running the R script, “<em>Post Process.R</em>” in the Post Process folder. This is the main file that can run all other supporting scripts to analyze the outputs from the SPA. Note, that required libraries will be called in the R script but may require installation before running the script. These libraries are similar to the packages that were installed during the building of the Shared_Parking environment in the Python setup.</p>
+<p>The post-process Excel visualization file will be created by running the R script, “<em>Post Process.R</em>” in the Post Process folder. This is the main file that can run all other supporting scripts to analyze the outputs from the SUPM. Note, that required libraries will be called in the R script but may require installation before running the script. These libraries are similar to the packages that were installed during the building of the Shared_Parking environment in the Python setup.</p>
 <p>The supporting R scripts called by the Post Process.R script are located within the subfolder titled “Source” in the R project directory. The Source directory contains the following supporting files:</p>
 <ul>
 <li><em>read_shapefiles.R</em>: Open’s shapefiles of generated parking lots.</li>
@@ -462,7 +442,7 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 <p><img src="./assets/media/image14.png"
 style="width:6.5in;height:1.91597in"
 alt="Text Description automatically generated" /></p>
-<p>Running the post process will require defining the project type and editing directory selections within the script to correctly call and store files. The projects available for analysis include “Winooski_city” and “Winooski_ave.” The directory called from for “model_dir” should contain the output from Python scripts used in the SPA. The directory called from “dir” should contain a folder titled “Outputs” for storing post processing results.</p>
+<p>Running the post process will require defining the project type and editing directory selections within the script to correctly call and store files. The projects available for analysis include “Winooski_city” and “Winooski_ave.” The directory called from for “model_dir” should contain the output from Python scripts used in the SUPM. The directory called from “dir” should contain a folder titled “Outputs” for storing post processing results.</p>
 <p>Figure : post process step 2 - define project &amp; loading inputs</p>
 <p><img src="./assets/media/image15.png"
 style="width:6.5in;height:2.42361in"
@@ -471,12 +451,12 @@ alt="Text Description automatically generated" /></p>
 <p><img src="./assets/media/image16.png"
 style="width:6.5in;height:1.82847in"
 alt="Text Description automatically generated" /></p>
-<p>Step 3 reads data outputs from the Python model and shapefile inputs used for the SPA model run using the “<em>read_shapefiles.R</em>” script.  The folder “Source” must be in the same directory as the R Project in order these scripts.</span></p>
+<p>Step 3 reads data outputs from the Python model and shapefile inputs used for the SUPM model run using the “<em>read_shapefiles.R</em>” script.  The folder “Source” must be in the same directory as the R Project in order these scripts.</span></p>
 <p>Figure : post process step 3 – read data</p>
 <p><img src="./assets/media/image17.png"
 style="width:6.5in;height:1.55972in"
 alt="Text Description automatically generated" /></p>
-<p>Step 4 analyzes the parking data to project capacity versus demand stored in usable output files. Run the constraint check section to plot demand vs capacity for both the model and unconstrained demand given the SPA outputs.</p>
+<p>Step 4 analyzes the parking data to project capacity versus demand stored in usable output files. Run the constraint check section to plot demand vs capacity for both the model and unconstrained demand given the SUPM outputs.</p>
 <p>Figure : post process step 4 – constraint check</p>
 <p><img src="./assets/media/image18.png"
 style="width:6.5in;height:2.58472in"
@@ -555,12 +535,12 @@ alt="Graphical user interface, table Description automatically generated" /></p>
 <p>The user should check these results for reasonableness. Do they generally agree with the user’s expectation? Do they agree with
 anecdotal data on this location? If not, the user should double check the inputs and consider if there are special cases in this area that do not conform well with the default demand and adjustment factors.</p>
 <h1 id="calibration-and-refining-input-data">Calibration and Refining Input Data<a class="headerlink" href="#calibration-and-refining-input-data" title="Permanent link">#</a></h1>
-<p>The SPA tool uses a generic dataset of national data from <u>Shared Parking</u>. It should be used as a planning tool to understand the effects of shared parking, both where excess capacity may exist and where a new generator may require more parking than is currently available. Like all planning data, the demand and adjustment factors used here are not perfect, and the user should be careful when demand is shown to be close to supply.</p>
+<p>The SUPM tool uses a generic dataset of national data from <u>Shared Parking</u>. It should be used as a planning tool to understand the effects of shared parking, both where excess capacity may exist and where a new generator may require more parking than is currently available. Like all planning data, the demand and adjustment factors used here are not perfect, and the user should be careful when demand is shown to be close to supply.</p>
 <p>There are a variety of reasons a user may want to change the demand and adjustments factors. A user may decide to use local data for time adjustment factors or use a higher generation rate for a particularly popular generator. The available land use codes may not cover a desired land use type. <u>Shared Parking</u> explains its methods for data collection and how to collect local data. </p>
-<p>A good first step is to perform field counts at the times the SPA tool indicates peak demand occurs. It may also be helpful to compare anecdotal data for particular times with what the tool’s output indicates. These observations may show that the tool is generally accurate, or over- or under-estimating peak demand. It is also possible that some stores are not open when the default factors are showing they have demand, e.g. restaurants that are not open after midnight.</p>
+<p>A good first step is to perform field counts at the times the SUPM tool indicates peak demand occurs. It may also be helpful to compare anecdotal data for particular times with what the tool’s output indicates. These observations may show that the tool is generally accurate, or over- or under-estimating peak demand. It is also possible that some stores are not open when the default factors are showing they have demand, e.g. restaurants that are not open after midnight.</p>
 <p>If the user determines that the demand and adjustment factors need to be refined, the user should perform parking lot counts in accordance with the <u>Shared Parking</u> methodology. It may be possible to perform counts at only the times of highest demand and adjust the factors accordingly and thus avoid counting all 26 days of factors. Changing factors to reflect store hour hours will also help calibrate a particular area.</p>
 <h1 id="tool-methodology">Tool Methodology<a class="headerlink" href="#tool-methodology" title="Permanent link">#</a></h1>
-<p>The premise of the SPA tool is that for each hour of the analysis it goes through an iterative process of:</p>
+<p>The premise of the SUPM tool is that for each hour of the analysis it goes through an iterative process of:</p>
 <ul>
 <li>
 <p>Estimating the parking demand generated by each of the land uses in the model shapefile</p>
@@ -569,8 +549,8 @@ anecdotal data on this location? If not, the user should double check the inputs
 <p>Allocates that demand based on a utility function subject to size constraints and restrictions on which land uses can part in which lots.</p>
 </li>
 </ul>
-<p>The SPA tool uses the parking demand estimates for each land use from the Urban Land Institute’s <u>Shared Parking</u> guide.</p>
-<p>The SPA tool calculates each hour of demand independently, using the hourly factors from Shared Parking. This aggregate approach avoids the need to estimate the individual parking behaviors of each individual vehicle in the network and rather model the overall demand at each time period separately.</p>
+<p>The SUPM tool uses the parking demand estimates for each land use from the Urban Land Institute’s <u>Shared Parking</u> guide.</p>
+<p>The SUPM tool calculates each hour of demand independently, using the hourly factors from Shared Parking. This aggregate approach avoids the need to estimate the individual parking behaviors of each individual vehicle in the network and rather model the overall demand at each time period separately.</p>
 <p>The analysis considers:</p>
 <ul>
 <li>
@@ -590,6 +570,9 @@ anecdotal data on this location? If not, the user should double check the inputs
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="postprocess/" class="btn btn-neutral float-right" title="Analyze">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -612,6 +595,8 @@ anecdotal data on this location? If not, the user should double check the inputs
     
     
     
+      <span><a href="postprocess/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script src="js/jquery-3.6.0.min.js"></script>
@@ -630,5 +615,5 @@ anecdotal data on this location? If not, the user should double check the inputs
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-10-12 00:49:06.127583+00:00
+Build Date UTC : 2025-10-12 01:31:00.689992+00:00
 -->
