@@ -84,7 +84,6 @@ gen_restrict_file: restrict_list2.csv
 metered_cost: 1.0  # TODO: not implemented yet (hardcoded)
 
 # Utility factors
-# (note from Blake: I made these up. feel free to change)
 distance_factor: 4.5
 capacity_factor: 1.0
 scarcity_factor: 1.0
