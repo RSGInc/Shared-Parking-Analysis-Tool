@@ -25,7 +25,7 @@ The method that has been used successfully uses a Kepler.GL Extension in Visual 
 
 The Extension is Geo Data Viewer in VisualStudio
 
-![image-20251011202904727](.assets/media/image-20251011202904727.png)
+![image-20251011202904727](../assets/media/image-20251011202904727.png)
 
 
 Using the extension in VisualStudio you can import the GeoJSON, navigate the maps, set the conditions (filters and queries), and export as an HTML file.
