@@ -4,7 +4,7 @@ nav:
   - Postprocess: postprocess.md
   - About: about.md
 theme: 
-  name: mkdocs
+  name: windmill
   navigation_depth: 2
 markdown_extensions:
   - toc:
