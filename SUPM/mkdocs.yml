@@ -1,9 +1,11 @@
 site_name: Shared Use Parking Model
 nav:
   - index.md
-  - main.md
   - postprocess.md
-theme: readthedocs
+  - about.md
+theme: 
+  name: mkdocs
+  navigation_depth: 2
 markdown_extensions:
   - toc:
       permalink: "#"
