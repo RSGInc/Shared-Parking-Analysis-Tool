@@ -35,13 +35,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Introduction</a>
+                                <a href="." class="nav-link active" aria-current="page">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="postprocess/" class="nav-link">Analyzing the Data</a>
+                                <a href="postprocess/" class="nav-link">Postprocess</a>
                             </li>
                             <li class="nav-item">
-                                <a href="about/" class="nav-link">Shared Parking Analysis Tool</a>
+                                <a href="about/" class="nav-link">About</a>
                             </li>
                         </ul>
 
@@ -192,7 +192,7 @@ the SUPM tool. These include the following:</p>
   with specific package versions and configurations.</li>
 </ul>
 <blockquote>
-<p><img src="../assets/media/image5.png"
+<p><img src="./assets/media/image5.png"
 style="width:4.8732in;height:2.20633in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 </blockquote>
@@ -220,21 +220,21 @@ alt="A screenshot of a computer Description automatically generated" /></p>
   visualization, and package management.</li>
 </ul>
 <blockquote>
-<p><img src="../assets/media/image6.png"
+<p><img src="./assets/media/image6.png"
 style="width:4.8732in;height:2.97379in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 </blockquote>
 <h2 id="download-the-supm-code">Download the SUPM code<a class="headerlink" href="#download-the-supm-code" title="Permanent link">#</a></h2>
 <p>The SUPM Source code is stored in a GitHub repository. In order to use the SUPM tool the user is required to download the code by cloning the repository or downloading the zip file of the repository from GitHub.</p>
 <p>The GitHub repository has the following files:</p>
-<p><img src="../assets/media/image-20251010214517700.png" /></p>
+<p><img src="./assets/media/image-20251010214517700.png" /></p>
 <p>The SUPM ‘Shared_Parking’ folder should be moved to the location on the local machine where it will be called. Typically, a location near to the root C: drive or in a My Documents location is used. </p>
 <p>A typical SUMP run will produce a few hundred MB's of data. </p>
 <h2 id="installation-of-the-supm-tool">Installation of the SUPM Tool<a class="headerlink" href="#installation-of-the-supm-tool" title="Permanent link">#</a></h2>
 <p>The installation of the SUPM tool requires the use of setting up a python environment using the Anaconda python interface.</p>
 <p>Use the Start menu to find the Anaconda Prompt. A command window opens. Using commands you need to navigate to the shared_parking folder.</p>
 <p><span id="_Ref112935956" class="anchor"></span>Figure : Anaconda Prompt</p>
-<p><img src="../assets/media/image8.png"
+<p><img src="./assets/media/image8.png"
 style="width:2.64986in;height:2.59967in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 <p>For an example stored on the C drive in a GitHub folder</p>
@@ -243,13 +243,13 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 install the Shared_Parking environment.</p>
 <p><code>conda env create -f environment.yml</code></p>
 <p>Figure : Conda Environment Install</p>
-<p><img src="../assets/media/image9.png"
+<p><img src="./assets/media/image9.png"
 style="width:6.5in;height:1.29236in"
 alt="A screen shot of a computer Description automatically generated" /></p>
 <p>The environment loads the necessary supporting software packages into
 the Python environment so that the analysis can be completed.</p>
 <p>Figure : Conda Python Environment (after)</p>
-<p><img src="../assets/media/image10.png"
+<p><img src="./assets/media/image10.png"
 style="width:5in;height:2.5in"
 alt="Anaconda Prompt" /></p>
 <h2 id="input-files">Input Files<a class="headerlink" href="#input-files" title="Permanent link">#</a></h2>
@@ -362,7 +362,7 @@ shapefiles that includes information pertaining to the parking lot, who may have
 </li>
 </ul>
 <p>Sample data is shown below:</p>
-<p><img src="../assets/media/image11.png"
+<p><img src="./assets/media/image11.png"
 style="width:6.5in;height:1.06111in"
 alt="A white background with black text Description automatically generated" /></p>
 <p>The Excel file includes the Land Use, Monthly parking demand factors, and a Time of Day (TOD) worksheet.</p>
@@ -383,7 +383,7 @@ alt="A white background with black text Description automatically generated" /><
 7: Generator-specific lot access (e.g., gen 244 can only park in lot 48 and 49) .  Need to use the Restrict_list2.csv
 </code></pre>
 <p>Restrict code 3 restricts specific Generators (GEN_UID) to be able to park in that lot. However, the demand (the Generator) could park elsewhere.  </p>
-<p><img src="../assets/media/image12.png"
+<p><img src="./assets/media/image12.png"
 style="width:1.25612in;height:2.57165in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 <p>The Restrict Codes are used to inform which land uses can park in the specific parking lots.</p>
@@ -501,36 +501,36 @@ alt="A screenshot of a computer Description automatically generated" /></p>
 </li>
 </ul>
 <p>Figure : post process step 1 - load packages</p>
-<p><img src="../assets/media/image14.png"
+<p><img src="./assets/media/image14.png"
 style="width:6.5in;height:1.91597in"
 alt="Text Description automatically generated" /></p>
 <p>Running the post process will require defining the project type and editing directory selections within the script to correctly call and store files. The projects available for analysis include “Winooski_city” and “Winooski_ave.” The directory called from for “model_dir” should contain the output from Python scripts used in the SUPM. The directory called from “dir” should contain a folder titled “Outputs” for storing post processing results.</p>
 <p>Figure : post process step 2 - define project &amp; loading inputs</p>
-<p><img src="../assets/media/image15.png"
+<p><img src="./assets/media/image15.png"
 style="width:6.5in;height:2.42361in"
 alt="Text Description automatically generated" /></p>
 <p>Figure : post process step 2 - define project, setting directories</p>
-<p><img src="../assets/media/image16.png"
+<p><img src="./assets/media/image16.png"
 style="width:6.5in;height:1.82847in"
 alt="Text Description automatically generated" /></p>
 <p>Step 3 reads data outputs from the Python model and shapefile inputs used for the SUPM model run using the “<em>read_shapefiles.R</em>” script.  The folder “Source” must be in the same directory as the R Project in order these scripts.</span></p>
 <p>Figure : post process step 3 – read data</p>
-<p><img src="../assets/media/image17.png"
+<p><img src="./assets/media/image17.png"
 style="width:6.5in;height:1.55972in"
 alt="Text Description automatically generated" /></p>
 <p>Step 4 analyzes the parking data to project capacity versus demand stored in usable output files. Run the constraint check section to plot demand vs capacity for both the model and unconstrained demand given the SUPM outputs.</p>
 <p>Figure : post process step 4 – constraint check</p>
-<p><img src="../assets/media/image18.png"
+<p><img src="./assets/media/image18.png"
 style="width:6.5in;height:2.58472in"
 alt="A screenshot of a computer Description automatically generated" /></p>
 <p>Running the script file “counts_analysis.R” will develop counts for weekday and weekend to project demand by hour, day, and month. Land use codes can be adjusted for on-street shared parking as well.</p>
 <p>Figure : post process step 4 – counts analysis</p>
-<p><img src="../assets/media/image19.png"
+<p><img src="./assets/media/image19.png"
 style="width:6.5in;height:3.02847in"
 alt="Text Description automatically generated" /></p>
 <p>Running the last step will export an Excel output to the “Outputs” folder under the output directory.</p>
 <p>Figure : post process step 5 – write output</p>
-<p><img src="../assets/media/image20.png"
+<p><img src="./assets/media/image20.png"
 style="width:6.5in;height:2.16328in"
 alt="Text Description automatically generated" /></p>
 <h2 id="post-processing-output">post-processing output<a class="headerlink" href="#post-processing-output" title="Permanent link">#</a></h2>
@@ -562,17 +562,17 @@ alt="Text Description automatically generated" /></p>
 <p>Total utilized spaces by land use type (“Sum of demand”).</p>
 </li>
 </ul>
-<p><img src="../assets/media/image21.png"
+<p><img src="./assets/media/image21.png"
 style="width:4.00744in;height:2.11692in"
 alt="Graphical user interface, table Description automatically generated" /></p>
 <p>figure 10: overall summaries output 1</p>
 <p>In contrast, the second table, “OnStreet 3 Period,” can also be filtered by land use category and is analyzed at a lot-specific level. This table includes the same analyzed variables and percent utilization for each lot (“Sum of PctFull”).</p>
-<p><img src="../assets/media/image22.png"
+<p><img src="./assets/media/image22.png"
 style="width:4.95003in;height:3.35502in"
 alt="Table Description automatically generated" /></p>
 <p>figure 11: overall summaries output 2</p>
 <p>The table in this worksheet shows utilization rates for each parking lot (“Lot_UID”) at hours 8:00, 13:00, and 16:00, organized by street. This also shows a grand total utilization rate for a 24-hour period. These can be filtered by month, day, and land use category.</p>
-<p><img src="../assets/media/image23.png"
+<p><img src="./assets/media/image23.png"
 style="width:5.4209in;height:4.15306in"
 alt="Table Description automatically generated" /></p>
 <p>figure 12: onstreet 3 period output</p>
@@ -590,7 +590,7 @@ by hours 0:00 and 6:00-23:00. The table includes:</p>
 </li>
 </ul>
 <p>These observations can be filtered by month, day, and street.</p>
-<p><img src="../assets/media/image24.png"
+<p><img src="./assets/media/image24.png"
 style="width:7.08543in;height:3.10694in"
 alt="Graphical user interface, table Description automatically generated" /></p>
 <p>figure 13: single street pivot output</p>
@@ -710,5 +710,5 @@ anecdotal data on this location? If not, the user should double check the inputs
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-10-13 00:50:50.918972+00:00
+Build Date UTC : 2025-10-13 00:56:24.409897+00:00
 -->
