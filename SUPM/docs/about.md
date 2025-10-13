@@ -1,13 +1,12 @@
-# **Shared Parking Analysis Tool**
+# **Shared Use Parking Model**
 
-<p>Shared Use Parking Model (SUPM) </p>
 
 <p>V1: 2023</p>
 <p>V2.1: April 2025</p>
 **Report Prepared for Chittenden County Regional Planning Commission**
 
 
-<img src="./assets/media/image3.jpeg"
+<img src="../assets/media/image3.jpeg"
 style="width:4.14375in;height:1.44653in"
 alt="Chittenden County Regional Planning Commission" />
 

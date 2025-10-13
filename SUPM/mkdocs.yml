@@ -1,8 +1,8 @@
 site_name: Shared Use Parking Model
 nav:
-  - index.md
-  - postprocess.md
-  - about.md
+  - Home: index.md
+  - Postprocess: postprocess.md
+  - About: about.md
 theme: 
   name: mkdocs
   navigation_depth: 2
