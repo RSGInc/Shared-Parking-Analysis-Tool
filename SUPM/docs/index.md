@@ -84,6 +84,8 @@ the SUPM tool. These include the following:
 
 The SUPM Source code is stored in a GitHub repository. In order to use the SUPM tool the user is required to download the code by cloning the repository or downloading the zip file of the repository from GitHub.
 
+​	https://github.com/RSGInc/Shared-Parking-Analysis-Tool 
+
 The GitHub repository has the following files:
 
 <img src="./assets/media/image-20251010214517700.png" />
@@ -218,6 +220,10 @@ style="width:6.5in;height:1.06111in"
 alt="A white background with black text Description automatically generated" />
 
 The Excel file includes the Land Use, Monthly parking demand factors, and a Time of Day (TOD) worksheet.
+
+This Excel file is a critical one. The peak rates per date (Weekday and Weekend) specify the maximum parking demand from which all hours will be based on. The other detailed inputs provide a month by month and hour by hour percentage of that peak parking demand. 
+
+
 
 
 
