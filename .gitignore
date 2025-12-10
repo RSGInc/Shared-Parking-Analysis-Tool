@@ -12,7 +12,8 @@ test.py
 WinAveTests
 WinCityTests
 Output/base/baseoutput
-Inputs/
+Inputs/data
+Inputs/outputs
 Inputs/Parking Demand and Adjustments.xlsx
 Inputs/restrict_list.csv
 Inputs/sample_gis.qgz
